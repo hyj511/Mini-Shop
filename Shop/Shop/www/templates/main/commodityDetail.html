@@ -1,0 +1,87 @@
+﻿<ion-view id="commodityDetail">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="goBack()">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        商品详情
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="popover.show($event)">
+            <i class="ion-android-more-vertical"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="slider-area">
+            <ion-slide-box pager-click="navSlide(index)" auto-play="true" does-continue="true">
+                <ion-slide ng-repeat="image in images">
+                    <img ng-src="{{image.url}}" />
+                </ion-slide>
+            </ion-slide-box>
+        </div>
+        <div class="commodity-area">
+            <div class="commodity-info">
+                <div class="description">
+                    奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装
+                </div>
+                <div class="prices">
+                    <span class="price1">¥495.9</span>
+                    <span class="price2">拼团价: ¥59.00</span>
+                </div>
+            </div>
+        </div>
+        <div class="info-area">
+            <div class="item">
+                <span class="left">快递运费: ¥15</span>
+                <span class="right" style="min-width:60px;">库存: </span>
+            </div>
+            <div class="item" style="color: #bbb;">
+                <span class="left">七天包退, 十四天包换</span>
+                <span class="right" ng-click="showRetreat()"><img class="question" src="img/question.png" /></span>
+            </div>
+        </div>
+        <div class="group-area">
+            <div class="info-area">
+                <div class="item" style="border: none;">
+                    <span class="left">火热拼团</span>
+                    <span class="right" ng-click="showFire()"><img class="question" src="img/question.png" /></span>
+                </div>
+                <div class="item">
+                    <p class="left"><span class="price2">拼团价: ¥59.00</span></p>
+                    <p class="left rule">规则: 24小时内2人参与拼团即成功</p>
+                </div>
+                <div ng-repeat="user in users" class="item item-avatar">
+                    <img ng-src="{{user.url}}">
+                    <div class="user-info">
+                        <div class="description">
+                            小明发起了拼团
+                        </div>
+                        <div class="info">
+                            人数: 1人, 倒计时: 23:35:44
+                        </div>
+                    </div>
+                    <button class="button button-outline appbutton3" ng-click="showModal()">
+                        去参团
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="detail-area">
+            <div class="title">
+                <span class="left">商品详情</span>
+            </div>
+            <div class="thumb">
+                <img src="img/commodity-thumb.png" />
+            </div>
+        </div>
+    </ion-content>
+    <div class="button-area">
+        <button class="button appbutton1" ng-click="showModal()">
+            立即购买
+        </button>
+        <button class="button appbutton2" ng-click="showModal()">
+            发起拼团
+        </button>
+    </div>
+</ion-view>

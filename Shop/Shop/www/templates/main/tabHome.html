@@ -1,0 +1,44 @@
+﻿<ion-view id="tabHome" hide-nav-bar="true">
+    <ion-content>
+        <div class="logo-area">
+            <img src="img/logo.png" />
+        </div>
+        <div class="slider-area">
+            <ion-slide-box pager-click="navSlide(index)" auto-play="true" does-continue="true">
+                <ion-slide ng-repeat="image in images">
+                    <img ng-src="{{image.url}}" />
+                </ion-slide>
+            </ion-slide-box>
+            <div class="button-area">
+                <ion-scroll direction="x" class="wide-as-needed">
+                    <a class="button inline-button">肉蛋</a>
+                    <a class="button">千货</a>
+                    <a class="button">特饮</a>
+                    <a class="button">速食</a>
+                    <a class="button">肉蛋</a>
+                    <a class="button">千货</a>
+                    <a class="button">特饮</a>
+                    <a class="button">速食</a>
+                    <a class="button">肉蛋</a>
+                </ion-scroll>
+            </div>
+        </div>
+        <div class="commodity-area">
+            <div class="list">
+                <div ng-repeat="commodity in commodities" class="item item-thumbnail-left">
+                    <img ng-src="{{commodity.url}}">
+                    <div class="commodity-info">
+                        <div class="description">
+                            {{commodity.description}}
+                        </div>
+                        <div class="prices">
+                            <span class="price1">¥{{commodity.price1}}</span>
+                            <span class="price2">拼团价: ¥{{commodity.price2}}</span>
+                            <span class="detail" ng-click="goDetail()">详情<i class="fa fa-angle-right" aria-hidden="true" style="margin-left:5px;"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

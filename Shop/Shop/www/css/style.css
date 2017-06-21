@@ -1,0 +1,574 @@
+﻿/* Add your own CSS if you like */
+
+.logo-area {
+    text-align: center;
+    padding-top: 20px;
+}
+.logo-area img{
+    width: 55%;
+}
+ion-slide img{
+     width:100%; 
+     height:250px; 
+     margin:auto; 
+     display:block;
+}
+.slider-area .slider-pager{
+    text-align: right;
+    padding-right: 10px;
+    bottom: 50px;
+}
+.slider-area .slider-pager .slider-pager-page{
+    color: #ccc;
+    opacity: 0.7;
+    width: 12px;
+}
+.slider-area .slider-pager .slider-pager-page.active {
+    -webkit-transition: opacity 0.4s ease-in;
+    transition: opacity 0.4s ease-in;
+    opacity: 1;
+    color: #fff;
+}
+.slider-area .slider-pager .slider-pager-page i{
+    font-size: 12px;
+}
+.wide-as-needed {
+  overflow: scroll;
+  white-space: nowrap;
+}
+.scroll { 
+  min-width: 100%;
+}
+.scroll a.button{
+    min-width: 70px;
+    min-height: 30px;
+    border-radius: 0px;
+    margin-left: -1px;
+    margin-right: -1px;
+    line-height: 35px;
+    color:#666;
+}
+.slider-area .button-area {
+    z-index: 1000;
+    margin-top: -40px;
+    margin-left: 2px;
+}
+.tabs-striped .tabs {
+    border-top: 1px solid #eee !important;
+}
+.commodity-area .item-thumbnail-left > img:first-child{
+    top: 5px;
+    left: 5px;
+    max-width: 90px;
+    max-height: 90px;
+}
+.commodity-area .item-thumbnail-left{
+    padding: 10px;
+    padding-left: 105px;
+    min-height: 105px;
+}
+.commodity-area .commodity-info {
+    font-size: 14px;
+}
+.commodity-area .description {
+    white-space: normal;
+    height: 65px;
+    color: #333;
+    opacity: 0.8;
+}
+.commodity-area .price1 {
+    color: #68bc5e;
+}
+#commodityDetail .commodity-area .price1{
+    color: #db5078;
+    font-size: 16px;
+    font-weight: 600;
+}
+#commodityDetail .commodity-area .price2{
+    color: #68bc5e;
+    margin-left: 5px;
+    font-size: 12px;
+}
+#commodityDetail .group-area .price2{
+    color: #68bc5e;
+}
+.info-area .price1{
+    color: #68bc5e;
+}
+.commodity-area .price2 {
+    color: #db5078;
+    margin-left: 5px;
+}
+.commodity-area .prices .detail {
+    color: #68bc5e;
+    float: right;
+    cursor: pointer;
+}
+#commodityDetail ion-slide img{
+    height: 300px;
+}
+#commodityDetail .slider-area .slider-pager{
+    bottom: 15px;
+}
+.platform-android .popover .item{
+    padding: 10px;
+    border-color: #eee;
+}
+ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.activated{
+    border: none;
+    color: #68bc5e;
+}
+span.tab-title {
+    font-size: 12px;
+    font-weight: 500;
+    color:#444;
+}
+.left-buttons .fa-angle-left{
+    font-size: 30px;
+    margin-top: 1px;
+}
+.right-buttons .ion-android-more-vertical{
+    font-size: 30px;
+    margin-right: 5px;
+}
+.platform-android .popover{
+    margin-top: 5px;
+    height: 150px;
+    border-radius: 5px;
+}
+#commodityDetail .commodity-area .description{
+    padding: 10px 10px 0px 10px;
+}
+#commodityDetail .prices {
+    padding: 0px 10px;
+}
+#commodityDetail .commodity-area{
+    margin-bottom: 15px;
+}
+#commodityDetail .info-area .item{
+    width: calc(100% - 20px);
+    margin: auto;
+    border: none;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    padding-left: 0px;
+    opacity: 0.8;
+    color: #000;
+    font-weight: 600;
+}
+.right{
+    float: right;
+}
+img.question {
+    width: 16px;
+    vertical-align: middle;
+}
+#commodityDetail .group-area {
+    border-top: 8px solid #eee;
+}
+#commodityDetail .detail-area {
+    border-top: 8px solid #eee;
+}
+#commodityDetail .group-area .rule {
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+}
+#commodityDetail .info-area .item.item-avatar{
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 0px;
+}
+#commodityDetail .item-avatar > img:first-child{
+    width: 50px;
+    height: 50px;
+    left: 0px;
+    border-radius: 50%;
+}
+#commodityDetail .user-info {
+    display: inline-block;
+    max-width: calc(100% - 60px);
+}
+.user-info .description{
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.user-info .info{
+    color: #bbb;
+    font-size: 12px;
+}
+.button-outline.button-outline.appbutton3 {
+    float: right;
+    border-color: #68bc5e;
+    color: #68bc5e;
+    line-height: 33px;
+    font-size: 12px;
+    min-height: 35px;
+    max-width: 60px;
+    vertical-align: middle;
+    font-weight: 600;
+    text-align: center;
+    top: 8px;
+    border-radius: 3px;
+}
+#commodityDetail .detail-area img{
+    width: 100%;
+}
+#commodityDetail .detail-area .title{
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    padding: 5px 15px;
+    margin-top: 5px;
+}
+button.appbutton1 {
+    color: #68bc5e;
+    background-color: white;
+}
+button.appbutton2 {
+    color: white;
+    background-color: #68bc5e;
+}
+#commodityDetail .button-area{
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+    right: -2px;
+}
+#commodityDetail button.button{
+    width: 50%;
+    border-radius: 0px;
+    font-size: 14px;
+    margin: -2px;
+}
+button.appbutton1:hover {
+    color: white;
+    background-color: #83d27a;
+}
+button.appbutton2:hover {
+    color: white;
+    background-color: #83d27a;
+}
+.popup-container.active .popup{
+    border-radius: 5px;
+}
+.popup .popup-head{
+    text-align: left;
+}
+.popup .popup-title{
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+}
+.popup .popup-body{
+    font-size: 12px;
+    color: #333;
+}
+.popup .button.button-positive {
+    border-color: transparent;
+    color: #333;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    border-top: 1px solid #ddd;
+}
+.popup .button.button-positive:hover {
+    color: #222;
+}
+.modal.bottom-sheet {
+  bottom: 0;  
+  min-height: initial;
+  top: initial;
+  height: 50%;
+  border-width: 0px;
+  border-style: solid;
+}
+.backdrop-area{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    opacity: 0.2;
+    z-index: 10;
+}
+#commodityModal .item-thumbnail-left > img:first-child{
+    left: 0px;
+    max-width: 90px;
+    max-height: 90px;
+}
+#commodityModal .commodity-info {
+    white-space: normal;
+    display: inline-block;
+    width: 100%;
+}
+#commodityModal .item-thumbnail-left{
+    padding-left: 110px;
+    border: none;
+}
+#commodityModal .close {
+    font-size: 23px;
+    position: absolute;
+    display: inline-block;
+    right: 0px;
+}
+#commodityModal .price1 {
+    color: #db5078;
+    font-weight: 600;
+    font-size: 20px;
+}
+#commodityModal button.appbutton2{
+    padding: 0px 5px;
+    min-height: 20px;
+    line-height: 20px;
+}
+#commodityModal .remain {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #aaa;
+}
+#commodityModal .price{
+    margin-top: 18px;
+}
+#commodityModal .button-area{
+    padding: 20px 0px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin: 3px 0px;
+}
+#commodityModal .count-area .title {
+    display: inline-block;
+}
+#commodityModal .count-area .control {
+    display: inline-block;
+    float: right;
+}
+#commodityModal .count-area .control button.appbutton2{
+    background-color: #eee;
+    color: #333;
+    padding: 3px 0px;
+    min-width: 40px;
+}
+#commodityModal .count-area {
+    padding: 10px 0px 20px 0px;
+    border-bottom: 1px solid #eee;
+}
+#goNext {
+    width: calc(100% + 20px);
+    margin: 5px -10px;
+    border-radius: 0px;
+    display: block;
+    position: fixed;
+    height: 50px;
+    font-weight: 600;
+    bottom: 0px;
+}
+#tabUser {
+    background-color: #eee;
+}
+#tabUser ion-content{
+    background-image: url('../img/tabuser.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+#tabUser .list-area {
+    padding-top: 120px;
+}
+#tabUser .list-area .item {
+    font-size: 14px;
+    color: #555;
+    border:none;
+}
+#tabUser .list {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: white;
+}
+#tabUser .list-area icon {
+    font-size: 25px;
+}
+#tabUser .left-side-icon{
+    color: #222;
+}
+#tabUser .right-side-icon{
+    color: #777;
+    left: auto;
+}
+#tabUser img.icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+}
+.order .list .left{
+    display: inline-block;
+}
+.order .commodity-area .item-thumbnail-left{
+    width: 100%;
+    border: none;
+    background-color: #eef5ed;
+}
+.order button.appbutton2 {
+    padding: 0px 5px;
+    min-height: 20px;
+    line-height: 20px;
+}
+.order .button-outline.button-outline.appbutton3 {
+    padding: 0px 5px;
+    min-height: 20px;
+    line-height: 20px;
+    color: #333;
+    top: 0px;
+    border-radius: 0px;
+}
+.index-area .right {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e54142;
+}
+.order .index-area {
+    margin-bottom: 10px;
+    padding: 0px 10px;
+}
+.order .commodity-area .item-thumbnail-left > img:first-child{
+    max-width: 100px;
+    max-height: 100px;
+}
+.order .commodity-area .description {
+    max-height: 50px;
+    font-size: 12px;
+}
+.order .price {
+    margin: 5px;
+}
+.order .remain {
+    margin-top: 10px;
+}
+.order .detail-area{
+    font-weight: 600;
+    color: #999;
+    padding: 10px 10px 0px 10px;
+    font-size: 14px;
+}
+#commodityDetail .button-outline.button-outline.appbutton3{
+    font-size: 12px;
+    margin: 0px;
+}
+.pending.order .commodity-area .item-thumbnail-left{
+    padding: 0px;
+    padding-left: 130px;
+}
+.pending .commodity-area .commodity-info{
+    background-color: white;
+    padding: 10px;
+}
+.pending .commodity-area .item-thumbnail-left > img:first-child{
+    top: 15px;
+    left: 15px;
+}
+.pending.order .button-outline.button-outline.appbutton4{
+    border-color: #ddd;
+    background-color: #eef5ed;
+    padding: 0px 5px;
+    min-width: 70px;
+    min-height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: -4px;
+    border-radius: 0px;
+    color: #444;
+}
+.pending.order .button-outline.button-outline.appbutton4.active{
+    color: #68bc5e;
+    background-color: #eef5ed;
+}
+.pending.order .user-area{
+    background-color: #eef5ed;
+}
+.pending.order .user-area p{
+    font-size: 12px;
+    font-weight: 600;
+}
+.pending.order .item.info{
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    margin: 0px auto;
+    width: calc(100% - 10px);
+    padding: 10px;
+}
+.pending.order .list {
+    padding-bottom: 50px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 30px;
+}
+.pending.order .button-area .total {
+    color: #db5078;
+    margin-right: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+    display: inline-block;
+}
+.order .button-area button.appbutton2{
+    border-radius: 0px;
+    padding: 10px 20px;
+    font-weight: 600;
+}
+
+button.appbutton5 {
+    background: -webkit-linear-gradient(#129a3a, #0f7d32);
+    background: -o-linear-gradient(#129a3a, #0f7d32);
+    background: -moz-linear-gradient(#129a3a, #0f7d32);
+    background: linear-gradient(#129a3a, #0f7d32);
+    border-radius: 20px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 19px;
+    white-space: nowrap;
+    text-shadow: 0px 2px 1px #056723;
+    box-shadow: 0px 3px 1px #0c6e27;
+}
+
+button.appbutton5:hover {
+    background: -webkit-linear-gradient(#42a35a, #3c9f54);
+    background: -o-linear-gradient(#42a35a, #3c9f54);
+    background: -moz-linear-gradient(#42a35a, #3c9f54);
+    background: linear-gradient(#42a35a, #3c9f54);
+    border-radius: 20px;
+    border: none;
+    color: white;
+}
+#shippingAddress ion-content{
+    padding-top: 30px;
+    background-color: #eee;
+}
+#shippingAddress .list {
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    background-color: white;
+    margin-bottom: 40px;
+}
+#shippingAddress .list .item {
+    width: calc(100% - 10px);
+    margin: 0px auto;
+    border: none;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    padding: 5px;
+}
+#shippingAddress button.appbutton5{
+    display: block;
+    margin: 30px auto;
+    width: 80%;
+    min-height: 30px;
+}
+#shippingAddress input[type="text"]{
+    margin-left: 15px;
+}

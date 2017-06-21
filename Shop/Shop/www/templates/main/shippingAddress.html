@@ -1,0 +1,57 @@
+﻿<ion-view id="shippingAddress">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="goBack()">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        编辑收货地址
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-dark button-clear" ng-click="goFinish()">
+            完成
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="list">
+            <div class="item">
+                <label class="item-input">
+                    姓名: 
+                    <input type="text" value="王小萌" placeholder="王小萌">
+                </label>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                    联系电话:
+                    <input type="text" value="13041096933" placeholder="13041096933">
+                </label>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                    收货地区:
+                    <input type="text" value="北京市 朝阳区" placeholder="北京市 朝阳区">
+                </label>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                    详细地址:
+                    <input type="text" value="北京工业大学东门" placeholder="北京工业大学东门">
+                </label>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                    邮政编码:
+                    <input type="text" value="100124" placeholder="100124">
+                </label>
+            </div>
+        </div>
+        <div class="button-area">
+            <button class="button appbutton5" ng-click="goSave()">
+                保存
+            </button>
+            <button class="button appbutton5" ng-click="goCancel()">
+                取消
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

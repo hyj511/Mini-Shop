@@ -1,0 +1,48 @@
+﻿<ion-view id="tabUser">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="goBack()">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        个人中心
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="list-area">
+            <div class="list">
+                <div class="item item-icon-left item-icon-right store" ng-click="goPage('store')">
+                    <img class="icon" src="img/store.png" />
+                    <i class="icon fa fa-angle-right right-side-icon" aria-hidden="true" style="margin-left:5px;"></i>
+                    门店自提订单
+                </div>
+                <div class="item item-icon-left item-icon-right delivery" style="border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin: 1px 0px;" ng-click="goPage('delivery')">
+                    <img class="icon" src="img/delivery.png" />
+                    <i class="icon fa fa-angle-right right-side-icon" aria-hidden="true" style="margin-left:5px;"></i>
+                    快递配送订单
+                </div>
+                <div class="item item-icon-left item-icon-right user" ng-click="goPage('user')">
+                    <img class="icon" src="img/we.png" />
+                    <i class="icon fa fa-angle-right right-side-icon" aria-hidden="true" style="margin-left:5px;"></i>
+                    我的拼团
+                </div>
+            </div>
+            <div class="list">
+                <div class="item item-icon-left item-icon-right address" ng-click="goPage('address')">
+                    <img class="icon" src="img/address.png" />
+                    <i class="icon fa fa-angle-right right-side-icon" aria-hidden="true" style="margin-left:5px;"></i>
+                    管理收货地址
+                </div>
+            </div>
+            <div class="list">
+                <div class="item item-icon-left item-icon-right customer" ng-click="goPage('customer')">
+                    <img class="icon" src="img/customer.png" />
+                    <i class="icon fa fa-angle-right right-side-icon" aria-hidden="true" style="margin-left:5px;"></i>
+                    客服电话 <span style="float:right;">029-88888888</span>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

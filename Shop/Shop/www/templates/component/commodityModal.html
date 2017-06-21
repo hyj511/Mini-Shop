@@ -1,0 +1,57 @@
+﻿<ion-bottom-sheet-view id="commodityModal">
+    <ion-content class="padding">
+        <div class="header-area">
+            <div class="item item-thumbnail-left">
+                <img src="img/commodity-detail.png" />
+                <div class="commodity-info">
+                    <p class="description">
+                        奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装
+                    </p>
+                    <div class="price">
+                        <span class="price1">¥489</span>
+                        <button class="button appbutton2">
+                            拼团
+                        </button>
+                    </div>
+                    <div class="remain">
+                        库存<span style="color:#333">13540</span>件
+                    </div>
+                </div>
+                <span class="close" ng-click="hideModal()"><i class="icon ion-android-close"></i></span>
+            </div>
+        </div>
+        <div class="button-area">
+            <button class="button appbutton2">
+                规格
+            </button>
+            <button class="button appbutton2">
+                规格
+            </button>
+            <button class="button appbutton2">
+                规格
+            </button>
+            <button class="button appbutton2">
+                规格
+            </button>
+        </div>
+        <div class="count-area">
+            <div class="title">
+                购买数量
+            </div>
+            <div class="control">
+                <button class="button appbutton2" ng-click="minusAction()">
+                    -
+                </button>
+                <button class="button appbutton2">
+                    {{commodityCount}}
+                </button>
+                <button class="button appbutton2" ng-click="plusAction()">
+                    +
+                </button>
+            </div>
+        </div>
+        <button id="goNext" class="button appbutton2" ng-click="goNext()">
+            下一步
+        </button>        
+    </ion-content>
+</ion-bottom-sheet-view>

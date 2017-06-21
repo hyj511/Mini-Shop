@@ -1,0 +1,89 @@
+﻿<ion-view id="pendingOrder" class="pending order">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="goBack()">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        待付款订单
+    </ion-nav-title>
+    <ion-content>
+        <div class="list">
+            <div class="commodity-area">
+                <div class="item item-thumbnail-left">
+                    <img src="img/commodity-1.png" />
+                    <div class="commodity-info">
+                        <div class="description">
+                            奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装
+                        </div>
+                        <div class="price">
+                            <div class="left">&times;1</div>
+                            <div class="right">¥69.00</div>
+                        </div>
+                        <div class="remain">
+                            <div class="left"><button class="button button-outline appbutton3">50G</button></div>
+                            <div class="right"><button class="button appbutton2">拼团</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="left" style="font-weight:600; padding-top: 5px;">
+                    配送方式
+                </div>
+                <div class="right">
+                    <button class="button button-outline appbutton4" ng-class="deliveryClass" ng-click="goDelivery()">快递配送</button>
+                    <button class="button button-outline appbutton4" ng-class="storeClass" ng-click="goStore()">门店自提</button>
+                </div>
+            </div>
+            <div class="item user-area">
+                <div class="left">
+                    <p class="name">收货人: <span>王小萌</span> <span>15126489546</span></p>
+                    <p class="address">北京市 朝阳区 10021</p>
+                    <p class="store">朝阳区 北京工业大学东门</p>
+                </div>
+                <div class="right" style="padding-top: 20px;">
+                    <button class="button button-outline appbutton3" ng-click="goShippingAddress()">编辑</button>
+                </div>
+            </div>
+            <div class="item info" style="margin-top:30px;">
+                <div class="left">
+                    买家留言:
+                </div>
+                <div class="right">
+
+                </div>
+            </div>
+            <div class="item info">
+                <div class="left">
+                    快递运费:
+                </div>
+                <div class="right">
+                    <span style="color:#db5078">¥69.00</span>
+                </div>
+            </div>
+            <div class="item info">
+                <div class="left">
+                    价格合计:
+                </div>
+                <div class="right">
+                    <span>¥0.00</span>
+                </div>
+            </div>
+            <div class="item info">
+                <div class="left">
+                    支付方式:
+                </div>
+                <div class="right">
+                    微信支付
+                </div>
+            </div>
+        </div>
+        <div class="button-area" style="text-align: right;">
+            <span class="total">总计: ¥69.00</span>
+            <button class="button appbutton2" ng-click="showModal()">
+                提交订单
+            </button>
+        </div>
+    </ion-content>
+</ion-view>
