@@ -15,9 +15,9 @@ With VS Code:
 * Clone this repository.
 * Run `npm install` from the project root.
 * Run `bower install` from the project root.
-* Add android / iOS / windows platform to your project by running `ionic platform add <platform name>` in a terminal from your project root.
-* Build the project by running gulp tsc and then `ionic build <platform name>`
-* Deploy to device or emulator by running `ionic run <platform name>` or `ionic emulate <platform name>`
+* Add android / iOS / windows platform to your project by running `ionic cordova platform add <platform name>` ex:`ionic cordova platform add android` in a terminal from your project root.
+* Build the project by running gulp tsc and then `ionic cordova build <platform name>` ex:`ionic cordova build android`
+* Deploy to device or emulator by running `ionic cordova run <platform name>` or `ionic cordova emulate <platform name>` ex:`ionic cordova run android`
 * Success
 
 ** Note: To improve your Cordova development workflow, install [VS Code Cordova extension](https://marketplace.visualstudio.com/items?itemName=vsmobile.cordova-tools). 
