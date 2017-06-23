@@ -1,0 +1,19 @@
+body form {
+    margin: 50px auto 0 auto;
+}
+#menu_shop i {
+    margin-left: 20px;
+}
+#shop_list, #product_list {
+    margin-top: 30px;
+}
+#save_product {
+    margin: 10px auto auto 400px;
+}
+#logout {
+    margin-left: 80%;
+}
+#logout a {
+    text-decoration: none;
+    cursor: pointer;
+}
