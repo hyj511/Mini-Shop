@@ -1,0 +1,21 @@
+<template name="homeProduct" class="home-product">
+  <view class="product-item">
+    <view class="product-image">
+      <image src="../../images/commodity.png"></image>
+    </view>
+    <view class="product-info">
+      <view class="product-description">
+        奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装
+      </view>
+      <view class="product-price">
+          <text class="price1">
+            ¥69.00
+          </text>
+          <text class="price2">
+            拼团价: ¥59.00
+          </text>
+          <text class="go-detail" bindtap="detailClick">详情 ></text>
+      </view>
+    </view>
+  </view>
+</template>
