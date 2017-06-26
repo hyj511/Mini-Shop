@@ -1,2 +1,78 @@
 <!--pages/productDetail/productDetail.wxml-->
-<text>pages/productDetail/productDetail.wxml</text>
+<import src="../templates/wechatUser.wxml"/>
+<view class="productDetail">
+  <view class="section swiper-area">
+      <swiper indicator-color="Rgba(100,100,100,0.5)" indicator-active-color="#fff" class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+          <block wx:for="{{swiper.images}}" wx:for-item="image">
+              <swiper-item>
+                  <image class="swiper-img" src="../../images/commodity-detail.png"></image>
+              </swiper-item>
+          </block>
+      </swiper>
+  </view>
+  <view class="commodity-area">
+      <view class="commodity-info">
+          <view class="description">
+              奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装
+          </view>
+          <view class="prices">
+              <text class="price1">¥495.9</text>
+              <text class="price2">拼团价: ¥59.00</text>
+          </view>
+      </view>
+  </view>
+  <view class="info-area">
+      <view class="item">
+          <text class="left">快递运费: <text style="color: #db5078; font-weight:600;">¥15</text></text>
+          <text class="right" style="min-width:60px;">库存: </text>
+      </view>
+      <view class="item" style="color: #bbb;">
+          <text class="left">七天包退, 十四天包换</text>
+          <view class="right" bindtap="modalRetreat"><image class="question" src="../../images/question.png"></image></view>
+      </view>
+  </view>
+  <view class="group-area">
+      <view class="info-area">
+          <view class="item" style="border: none;">
+              <text class="left">火热拼团</text>
+              <view class="right" bindtap="modalFire"><image class="question" src="../../images/question.png"></image></view>
+          </view>
+          <view class="item">
+              <view class="left"><text class="price2">拼团价: ¥59.00</text></view>
+              <view class="left rule">规则: 24小时内2人参与拼团即成功</view>
+          </view>
+      </view>
+      <view class="user-area">
+          <block wx:for="{{users}}" wx:for-item="user">
+              <template is="wechatUser"></template>
+          </block>
+      </view>
+  </view>
+  <view class="detail-area">
+      <view class="title">
+          <view class="content">商品详情</view>
+      </view>
+      <view class="thumb">
+          <image src="../../images/commodity-thumb.png"></image>
+      </view>
+  </view>
+</view>
+<view class="button-area">
+    <view class="sub-button">
+        <button class="button appbutton1">
+            立即购买
+        </button>
+    </view>
+    <view class="sub-button">
+        <button class="button appbutton2">
+            发起拼团
+        </button>
+    </view>
+</view>
+<!--Prepare modals-->
+<modal title="七天包退, 十四天包换" class="modal" hidden="{{modalRetreatHidden}}" no-cancel bindconfirm="modalRetreatChange" bindcancel="modalRetreatChange">
+    <view> 本次团购落地活动在宣传上延续多渠开, 在願客来源上, 从小区... </view>
+</modal>
+<modal title="火热拼团" class="modal" hidden="{{modalFireHidden}}" no-cancel bindconfirm="modalFireChange" bindcancel="modalFireChange">
+    <view> 本次团购落地活动在宣传上延续多渠开, 在願客来源上, 从小区... </view>
+</modal>
