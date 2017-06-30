@@ -27,25 +27,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="container">
         <!-- Tab Bar-->
         <ul class="nav nav-tabs">
-            <li class="active" id="tab_home"><a data-toggle="tab" href="#home">Home</a></li>
-            <li id="tab_shop"><a data-toggle="tab" href="#menu_shop">shop</a></li>
-            <li id="tab_product"><a data-toggle="tab" href="#menu_product">product</a></li>
-            <li id="tab_order"><a data-toggle="tab" href="#menu_order">order</a></li>
+            <li class="<?php echo ''; if($this->session->userdata('tab_status') == 'home' || $this->session->userdata('tab_status') == '') echo 'active';?>" id="tab_home" data-id="home"><a data-toggle="tab" href="#home">Home</a></li>
+            <li class="<?php echo ''; if($this->session->userdata('tab_status') == 'shop') echo 'active';?>" id="tab_shop" data-id="shop"><a data-toggle="tab" href="#menu_shop">shop</a></li>
+            <li class="<?php echo ''; if($this->session->userdata('tab_status') == 'product') echo 'active';?>" id="tab_product" data-id="product"><a data-toggle="tab" href="#menu_product">product</a></li>
+            <li class="<?php echo ''; if($this->session->userdata('tab_status') == 'order') echo 'active';?>" id="tab_order" data-id="order"><a data-toggle="tab" href="#menu_order">order</a></li>
         </ul>
         <!-- End Tab Bar-->
 
         <!-- Tab Bar Content-->
         <div class="tab-content">
-            <div id="home" class="tab-pane fade in active">
+            <div id="home" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'home' || $this->session->userdata('tab_status') == '') echo ' in active';?>">
                 <?php include('admin.php');?>
             </div>
-            <div id="menu_shop" class="tab-pane fade">            
+            <div id="menu_shop" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'shop') echo ' in active';?>"">            
                 <?php include('shop.php');?>
             </div>
-            <div id="menu_product" class="tab-pane fade">
+            <div id="menu_product" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'product') echo ' in active';?>"">
                 <?php include('product.php');?>
             </div>  
-            <div id="menu_order" class="tab-pane fade">
+            <div id="menu_order" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'order') echo ' in active';?>"">
                 <p>This is order page</p>
             </div>            
         </div>

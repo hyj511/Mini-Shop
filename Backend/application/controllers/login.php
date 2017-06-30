@@ -63,6 +63,7 @@ class Login extends CI_Controller {
 	{
         $this->session->unset_userdata('loggedin');
         $this->session->unset_userdata('admin_role');
+		$this->session->unset_userdata('tab_status');
         
     	$this->session->sess_destroy();
     	$this->load->driver('cache');

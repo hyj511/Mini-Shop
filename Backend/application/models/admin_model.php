@@ -39,4 +39,11 @@ class Admin_model extends CI_Model {
         $query = $this->db->get();
         return $result = $query->result_array();
 	}
+
+    /* delete a record */
+	public function delete($id) {
+        $this->db->where('id', $id);
+        $result = $this->db->delete('admins');
+		return $result;
+	}
 }

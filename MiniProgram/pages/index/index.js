@@ -11,7 +11,8 @@ Page({
   },
   detailClick: function(e){
     wx.navigateTo({
-      url: '../productDetail/productDetail'
+      //url: '../productDetail/productDetail'
+      url: '../test/test'
     });
   },
   //事件处理函数

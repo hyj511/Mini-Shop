@@ -38,4 +38,10 @@ Page({
       modalFireHidden: true
     })
   },
+  beforeOrder: function (e) {
+    wx.navigateTo({
+      url: '../beforeOrder/beforeOrder'
+      //url: '../modalsample/modalsample'
+    });
+  },
 })

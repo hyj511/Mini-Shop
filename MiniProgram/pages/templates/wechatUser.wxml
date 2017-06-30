@@ -9,7 +9,7 @@
         <view class="info">人数: 1人, 倒计时: 23:35:44</view>
       </view>
       <view class="gobutton">
-        <button class="appbutton3">
+        <button class="appbutton3" bindtap="beforeOrder">
             去参团
         </button>
       </view>
