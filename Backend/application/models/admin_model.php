@@ -12,7 +12,7 @@ class Admin_model extends CI_Model {
          parent::__construct();
     }
 
-     /* insert a record*/
+    /* insert a record*/
 	public function add($data) {
 		$query = $this->db->insert('admins', $data);
 	
@@ -33,6 +33,14 @@ class Admin_model extends CI_Model {
         return $result;
 	}
 
+     /* get a record by id */
+	public function getAdminById($id) {
+		$this->db->where('id', $id);
+        $this->db->from('admins');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
+
     /* get all record */
     public function getAll() {
 		$this->db->from('admins');
@@ -46,4 +54,11 @@ class Admin_model extends CI_Model {
         $result = $this->db->delete('admins');
 		return $result;
 	}
+
+     /* update a record */
+	public function update($id, $data) {
+		$this->db->where('id', $id);
+        $result = $this->db->update('admins', $data);
+        return $result;
+	}	
 }

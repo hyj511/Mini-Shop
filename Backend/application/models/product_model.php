@@ -30,6 +30,14 @@ class Product_model extends CI_Model {
         return $result = $query->result_array();
 	}
 
+	/* get records by category */
+    public function getByCategory($category) {
+		$this->db->where('category', $category);
+		$this->db->from('products');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
+
     /* delete a record */
 	public function delete($id) {
         $this->db->where('id', $id);
@@ -51,5 +59,15 @@ class Product_model extends CI_Model {
         $result = $this->db->update('products', $data);
         return $result;
 	}	
+
+	/**************************/
+	/*  Category Model        *
+	/**************************/
+	/* get all record */
+    public function getAllCategory() {
+		$this->db->from('category');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
 	
 }

@@ -39,14 +39,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div id="home" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'home' || $this->session->userdata('tab_status') == '') echo ' in active';?>">
                 <?php include('admin.php');?>
             </div>
-            <div id="menu_shop" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'shop') echo ' in active';?>"">            
+            <div id="menu_shop" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'shop') echo ' in active';?>">            
                 <?php include('shop.php');?>
             </div>
-            <div id="menu_product" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'product') echo ' in active';?>"">
+            <div id="menu_product" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'product') echo ' in active';?>">
                 <?php include('product.php');?>
             </div>  
-            <div id="menu_order" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'order') echo ' in active';?>"">
-                <p>This is order page</p>
+            <div id="menu_order" class="tab-pane fade <?php echo ''; if($this->session->userdata('tab_status') == 'order') echo ' in active';?>">
+                <?php include('order_view.php');?>
             </div>            
         </div>
         <!-- End Tab Bar Content-->

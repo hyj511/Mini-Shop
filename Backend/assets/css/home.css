@@ -1,6 +1,20 @@
 body form {
     margin: 50px auto 0 auto;
 }
+.modal {
+    width: 50%;
+    margin: 0 auto 0 auto;
+}
+.dark-bar {
+    background: #999;
+    margin-bottom: 20px;
+    padding :10px;
+}
+.dark-bar h4 {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
 .tab-content i {
     margin-left: 20px;
 }
