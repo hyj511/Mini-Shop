@@ -30,4 +30,12 @@ class Order_model extends CI_Model {
         $query = $this->db->get();
         return $result = $query->result_array();
 	}
+
+	  /* get a record by id */
+	public function getOrderById($id) {
+		$this->db->where('id', $id);
+        $this->db->from('order');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
 }

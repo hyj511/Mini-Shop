@@ -331,6 +331,56 @@ $(document).ready(function() {
         });
     });
 
+    /***************************** */
+    /* Order                      *
+    /******************************/ 
+
+    $('.edit-order').click(function() {
+        $('#order_modal').modal('show');
+    });
+    $('#close_order').click(function() {
+        $('#order_modal').modal('hide');
+    });
+
+    // edit the infomation of the selected product
+    $('#order_list .edit-order').on("click",function(){
+
+        // $('#order_modal').modal('show');
+
+        // var order_id =  $(this).data("id");
+        // var params = {
+        //     order_id: order_id
+        // }
+        // $.ajax({
+        //     type: "POST",
+        //     url: base_url + 'order/getorder',
+        //     data: params,
+        //     dataType: 'json',
+        //     success: function(result) {
+        //         if(result == false) {
+        //             alert('failed!');
+        //         } else {
+        //             $('#product_id').val(result.id);
+        //             $('#product_name').val(result.name);
+        //             $('#product_description').val(result.description);   
+        //             $('#category').val(result.category); 
+        //             $('#classification').val(result.classification);
+        //             $('#origin_price').val(result.origin_price);   
+        //             $('#promotion_price').val(result.promotion_price); 
+        //             $('#inventory').val(result.inventory);   
+        //             $('#express_fee').val(result.express_fee); 
+        //             $('#group_num').val(result.group_num);
+        //             $('#group_price').val(result.group_price);
+        //             $('#group_time').val(result.group_time);
+        //             update_product_flag = true;            
+        //         }
+        //     },
+        //     error: function(error) {
+        //         console.log(error);
+        //     }
+        // });
+    });
+
     // upload the image
     var upload_image = function (product_id) {        
         var file_data = $('#product_image').prop('files')[0];

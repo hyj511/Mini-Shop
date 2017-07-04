@@ -85,11 +85,11 @@ CREATE TABLE `order` (
   `buyer_address` varchar(64) DEFAULT NULL,
   `order_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `order` */
 
-insert  into `order`(`id`,`product_id`,`order_amount`,`buyer_name`,`buyer_phone`,`buy_type`,`shop_id`,`pay_state`,`pay_amount`,`order_state`,`history_state`,`delivery_num`,`delivery_type`,`buyer_address`,`order_time`) values (1,3,1,'lin','235434234',0,1,NULL,'23',NULL,NULL,NULL,0,NULL,NULL);
+insert  into `order`(`id`,`product_id`,`order_amount`,`buyer_name`,`buyer_phone`,`buy_type`,`shop_id`,`pay_state`,`pay_amount`,`order_state`,`history_state`,`delivery_num`,`delivery_type`,`buyer_address`,`order_time`) values (1,3,1,'lin','235434234',0,1,NULL,'23',NULL,NULL,NULL,0,NULL,NULL),(2,3,2,'lin','235434234',0,1,NULL,'23',NULL,NULL,NULL,0,'shenyand','0000-00-00 00:00:00');
 
 /*Table structure for table `order_history` */
 

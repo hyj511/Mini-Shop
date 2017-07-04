@@ -26,6 +26,7 @@ class Order extends CI_Controller {
 		$pay_amount = $this->input->post('pay_amount');
 		$delivery_type = $this->input->post('delivery_type');
 		$buyer_address = $this->input->post('buyer_address');
+		//$now = new DateTime();
 		$data = array(
 			'product_id' => $product_id, 
 			'order_amount' => $order_amount,
@@ -36,9 +37,17 @@ class Order extends CI_Controller {
             'pay_amount' => $pay_amount,
             'delivery_type' => $delivery_type,
 			'buyer_address' => $buyer_address,
-			//'order_time' => new DateTime()
+			//order_time' => date('Y-m-d H:i:s', $now)
 		);
 		$result = $this->order_model->add($data);
 		echo json_encode($result);
+	}
+
+	/* the function to get a order by order id*/
+	public function getorder()
+	{
+		$order_id = $this->input->post('order_id');		
+		$result = $this->order_model->getOrderById($order_id);
+		echo json_encode($result[0]);
 	}
 }
