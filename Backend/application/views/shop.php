@@ -1,66 +1,105 @@
-<div class="modal" id="shop_modal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="dark-bar">
-			        <div class="row">
-			        	<div class="col-md-12 text-center">
-							<h4>Shop</h4>
-			           	</div>
-			        </div>
-			    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>mini shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="<?php echo base_url('assets/css/home1.css');?>" rel="stylesheet">   
+</head>
+<body>
+    <div id="wrapper" class="active">  
+        <div class="container-fluid" id="header">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
+                MENU
+                </button>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    Mini Shop
+                </a>
             </div>
-            <div class="modal-body">
-                <form id="shop_info" class="horizontal-form">
-                    <input type="hidden" id="shop_id">
-                    <div class="form-group">
-                        <label>Shop Name:</label>
-                        <input type="text" class="form-control"placeholder="Enter Shop Name" id="shop_name" required>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
+			<!--<form class="navbar-form navbar-left" method="GET" role="search">
+				<div class="form-group">
+					<input type="text" name="q" class="form-control" placeholder="Search">
+				</div>
+				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+			</form>-->
+			<ul class="nav navbar-nav navbar-right">
+				<!--<li><a href="http://www.pingpong-labs.com" target="_blank">Visit Site</a></li>-->
+				<li class="dropdown ">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Account
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li class="dropdown-header">SETTINGS</li>
+							<!--<li class=""><a href="#">Other Link</a></li>
+							<li class=""><a href="#">Other Link</a></li>
+							<li class=""><a href="#">Other Link</a></li>-->
+							<li class="divider"></li>
+							<li><a href="<?php echo base_url('index.php/login/logout');?>">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+        <!-- Sidebar -->
+                <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul id="sidebar_menu" class="sidebar-nav">
+                <li class="sidebar-brand"><a id="menu-toggle" href="#">&nbsp;&nbsp;&nbsp;Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+            </ul>
+            <ul class="sidebar-nav" id="sidebar">
+                <li id="nav_home"><a href="<?php echo base_url('index.php/home/index');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理员管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li id="nav_shop"><a href="<?php echo base_url('index.php/home/showShop');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门店管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>                
+                <li id="nav_product"><a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品管理<span class="sub_icon glyphicon glyphicon-link"></span></a>
+                    <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
+                        <li><a href="<?php echo base_url('index.php/home/showCategory');?>">&nbsp;&nbsp;&nbsp;分类管理</a></li>
+                        <li><a href="<?php echo base_url('index.php/home/showProduct');?>">&nbsp;&nbsp;&nbsp;商品列表</a></li>
+                    </ul>
+		        </li>
+                <li id="nav_order"><a href="<?php echo base_url('index.php/home/showOrder');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li id="nav_order"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宣传管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+            </ul>
+        </div>
+            
+        <!-- Page content -->
+        <div id="page-content-wrapper">
+            <!-- Keep all page content within the page-content inset div! -->
+            <div class="page-content inset">
+                <div class="row">
+                    <div class="col-md-11 col-md-offset-1">
+                        <!--<p class="well lead">Mini Shop</p>-->
+                        <div id="page_content">
+                            <?php include('shop_table.php');?>                                       
+                        </div>
+                        <!--<p class="well lead">An Experiment using the sidebar (<a href="http://animeshmanglik.name">animeshmanglik.name</a>)</p> -->
                     </div>
-                    <div class="form-group">
-                        <label>Shop Address:</label>
-                        <input type="text" class="form-control" placeholder="Enter Shop Address" id="shop_address" required>
-                    </div> 
-                    <div class="form-group">
-                        <label>Shop Phone:</label>
-                        <input type="text" class="form-control" placeholder="Enter Shop Phone Number" id="shop_phone" required>
-                    </div>                    
-                    <button type="button" id="save_shop" class="btn btn-default">Save</button>
-                    <button type="button" id="close_shop" class="btn btn-default" style="float:right;">Close</button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>    
-</div>     
+        
+    </div>
 
-<div class="text-right" style="margin-top: 20px;">
-    <button class="btn btn-primary" id="add_shop">Add Shop</button>
-</div> 
-
-<div class="table-responsive">          
-    <table id="shop_list" class="table table-hover table-striped">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>shop name</th>
-                <th>Address</th>
-                <th>Phone Number</th>
-                <th></th>                             
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($shop_list as $key => $value) { ?>
-            <tr>
-                <td><?php echo $key + 1; ?></td>
-                <td><?php echo $value['shop_name']; ?></td>
-                <td><?php echo $value['shop_address']; ?></td> 
-                <td><?php echo $value['shop_phone']; ?></td>     
-                <td>
-                    <i class="fa fa-pencil edit-shop" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>
-                    <i class="fa fa-trash-o delete-shop" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>
-                </td>                          
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-</div>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap Javascript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Custom Javascript -->
+    <script src="<?php echo base_url('assets/js/home.js');?>"></script>
+</body>
+</html>

@@ -68,6 +68,51 @@ class Product_model extends CI_Model {
 		$this->db->from('category');
         $query = $this->db->get();
         return $result = $query->result_array();
-	}
+	}	
+
+	/* insert a record*/
+	public function addCategory($data) {
+		$query = $this->db->insert('category', $data);
 	
+		if($query) {
+			return $this->db->insert_id();
+		}
+		else {
+			return false;
+		}
+	}
+
+	 /* update a record */
+	public function updateCategory($id, $data) {
+		$this->db->where('id', $id);
+        $result = $this->db->update('category', $data);
+        return $result;
+	}	
+
+	/* get a record by id */
+	public function getCategoryById($id) {
+		$this->db->where('id', $id);
+        $this->db->from('category');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
+
+	 /* delete a record */
+	public function deletecategory($id) {
+        $this->db->where('id', $id);
+        $result = $this->db->delete('category');
+		return $result;
+	}
+
+	/**************************/
+	/*  Group Buy Model       *
+	/**************************/
+
+	/* get a group buy information by product id */
+	public function getGroupByProductId($id) {
+		$this->db->where('product_id', $id);
+        $this->db->from('group_buy');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
 }

@@ -61,4 +61,21 @@ class Admin_model extends CI_Model {
         $result = $this->db->update('admins', $data);
         return $result;
 	}	
+
+    // role table
+
+    /* get a record by id */
+	public function getRoleById($id) {
+		$this->db->where('id', $id);
+        $this->db->from('role');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
+
+    /* get all record */
+    public function getRoles() {
+		$this->db->from('role');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
 }

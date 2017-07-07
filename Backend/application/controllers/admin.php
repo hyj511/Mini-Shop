@@ -21,11 +21,12 @@ class Admin extends CI_Controller {
 		$admin_name = $this->input->post('admin_name');
 		$admin_email = $this->input->post('admin_email');
         $admin_shop = $this->input->post('admin_shop');
+		$admin_role = $this->input->post('admin_role');
 		$data = array(
 			'admin_name' => $admin_name, 
 			'admin_email' => $admin_email,
             'shop' => $admin_shop,
-            'admin_role' => 2
+            'admin_role' => $admin_role
 		);
 		$result = $this->admin_model->add($data);
 		echo json_encode($result);
@@ -38,10 +39,12 @@ class Admin extends CI_Controller {
 		$admin_name = $this->input->post('admin_name');
 		$admin_email = $this->input->post('admin_email');
         $admin_shop = $this->input->post('admin_shop');
+		$admin_role = $this->input->post('admin_role');
 		$data = array(
 			'admin_name' => $admin_name, 
 			'admin_email' => $admin_email,
             'shop' => $admin_shop,
+			'admin_role' => $admin_role
 		);
 		$result = $this->admin_model->update($admin_id, $data);
 		echo json_encode($result);

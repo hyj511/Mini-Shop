@@ -13,8 +13,24 @@ class Product extends CI_Controller {
 		parent::__construct();			
 		$this->load->model('product_model');
 		$this->load->model('file_model');
+		$this->load->model('order_model');
 	}
 	
+	/* the function to render product page*/
+	public function index()
+	{
+		$catetory_id = $this->input->post('catetory_id');
+
+		if($this->logged == 1) {
+			$product_list = $this->product_model->getByCategory($catetory_id);		
+			$data['product_list'] = $product_list;			
+
+			$this->load->view('product', $data);
+		} else {			
+			redirect('login','refresh');		
+		}
+	}
+
     /* the function to insert new product*/
 	public function addproduct()
 	{
@@ -34,13 +50,13 @@ class Product extends CI_Controller {
 			'description' => $product_description,
 			'category' => $product_category, 
 			'classification' => $product_classification,
-			'origin_price' => $product_origin_price, 
-			'promotion_price' => $product_promotion_price,
+			'originPrice' => $product_origin_price, 
+			'promotionPrice' => $product_promotion_price,
 			'inventory' => $product_inventory, 
-			'express_fee' => $product_express_fee,
-			'group_num' => $group_num,
-			'group_price' => $group_price,
-			'group_time' => $group_time
+			'expressFee' => $product_express_fee,
+			'groupNum' => $group_num,
+			'groupPrice' => $group_price,
+			'groupTime' => $group_time
 		);
 
 		$result = $this->product_model->add($data);
@@ -84,13 +100,13 @@ class Product extends CI_Controller {
 			'description' => $product_description,
 			'category' => $product_category, 
 			'classification' => $product_classification,
-			'origin_price' => $product_origin_price, 
-			'promotion_price' => $product_promotion_price,
+			'originPrice' => $product_origin_price, 
+			'promotionPrice' => $product_promotion_price,
 			'inventory' => $product_inventory, 
-			'express_fee' => $product_express_fee,
-			'group_num' => $group_num,
-			'group_price' => $group_price,
-			'group_time' => $group_time
+			'expressFee' => $product_express_fee,
+			'groupNum' => $group_num,
+			'groupPrice' => $group_price,
+			'groupTime' => $group_time
 		);
 		$result = $this->product_model->update($product_id, $data);
 		echo json_encode($result);
@@ -99,10 +115,17 @@ class Product extends CI_Controller {
 	// upload image file
 	public function do_upload()
 	{
+		if(isset($_FILES['file']['name'])) {
+			$file_name = explode(".", $_FILES['file']['name']);
+			$file_extension = $file_name[1];
+			$config['max_filename'] = $this->genFileName().$file_extension;// $_FILES['file']['name'];
+		} else {
+			$config['max_filename'] = 'default.jpg';
+		}		
+
 		//upload file
         $config['upload_path'] = 'uploads/';
-        $config['allowed_types'] = '*';
-        $config['max_filename'] = $_FILES['file']['name'];
+        $config['allowed_types'] = '*';		        
 		$config['overwrite'] = TRUE;
         //$config['encrypt_name'] = TRUE;
         $config['max_size'] = '1024'; //1 MB
@@ -123,7 +146,7 @@ class Product extends CI_Controller {
                 }
             }
         } else {
-            echo '2';
+            echo 'default.jpg';
         }
 	}
 
@@ -140,6 +163,14 @@ class Product extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	//generate file name by datetime
+	protected function genFileName()
+	{
+		$date = new DateTime();
+		$filename = $date->getTimestamp();
+		echo $filename;
+	}
+
 	// get all category
 	public function get_category ()
 	{
@@ -147,8 +178,50 @@ class Product extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	/* the function to get a category by category id*/
+	public function getcategory()
+	{
+		$category_id = $this->input->post('category_id');		
+		$result = $this->product_model->getCategoryById($category_id);
+		echo json_encode($result[0]);
+	}
+
+	/* the function to insert new category*/
+	public function add_category()
+	{
+		$category_name = $this->input->post('category_name');
+		
+		$data = array(
+			'name' => $category_name			
+		);
+
+		$result = $this->product_model->addCategory($data);
+
+		echo json_encode($result);
+	}
+
+	/* the function to update the category*/
+	public function updatecategory()
+	{
+		$category_id = $this->input->post('category_id');
+		$category_name = $this->input->post('category_name');		
+		$data = array(
+			'name' => $category_name			
+		);
+		$result = $this->product_model->updateCategory($category_id, $data);
+		echo json_encode($result);
+	}
+
+	/* the function to delete a category*/
+	public function deletecategory()
+	{
+		$category_id = $this->input->post('category_id');		
+		$result = $this->product_model->deletecategory($category_id);
+		echo json_encode($result);
+	}
+
 	/***************************/
-	/*          API            * 
+	/*                          * 
 	/***************************/ 
 
 	// get all products by category
@@ -156,6 +229,9 @@ class Product extends CI_Controller {
 	{
 		$category = $this->input->post('category');
 		$result = $this->product_model->getByCategory($category);
+		foreach($result as $key=>$value) {
+			$result[$key]['imageUrl'] = $this->config->base_url().'uploads/'.$value['imageUrl'];
+		}
 		echo json_encode($result);
 	}
 
@@ -164,13 +240,35 @@ class Product extends CI_Controller {
 	{
 		$product_id = $this->input->post('product_id');
 		$result = $this->product_model->getProductById($product_id);
+		echo json_encode($result);
+	}
+
+	// get images for a product
+	public function getimgs()
+	{
+		$product_id = $this->input->post('product_id');
 		$urls = $this->file_model->getUrlByProductId($product_id);
 		$images = array();
-		foreach($urls as $value) {
-			array_push($images, $value['img_url']);
+		foreach($urls as $key=>$value) {
+			$images[$key]['id'] = $value['id'];
+			$images[$key]['imgUrl'] = $this->config->base_url().'uploads/'.$value['img_url'];
 		}
-		$result[0]['images'] = $images;
-		echo json_encode($result[0]);
+		echo json_encode($images);
+	}
+
+	// get group buy infomation
+	public function getgroup()
+	{
+		$product_id = $this->input->post('product_id');
+		$group = $this->product_model->getGroupByProductId($product_id);
+		$group_members = $this->order_model->getOrderByGroupId($group[0]['id']);
+		$result = array();
+		$result['members'] = $group_members;
+		$result['number'] = $group[0]['number'];
+		$result['price'] = $group[0]['price'];
+		$result['endtime'] = $group[0]['endtime'];
+		$result['starttime'] = $group[0]['starttime'];
+		echo json_encode($result);
 	}
 
 }

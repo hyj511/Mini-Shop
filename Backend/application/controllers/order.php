@@ -37,7 +37,7 @@ class Order extends CI_Controller {
             'pay_amount' => $pay_amount,
             'delivery_type' => $delivery_type,
 			'buyer_address' => $buyer_address,
-			//order_time' => date('Y-m-d H:i:s', $now)
+			'order_time' => date('Y-m-d H:i:s')
 		);
 		$result = $this->order_model->add($data);
 		echo json_encode($result);

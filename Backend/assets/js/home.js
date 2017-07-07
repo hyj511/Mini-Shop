@@ -4,17 +4,27 @@ $(document).ready(function() {
     var update_shop_flag = false;
     var update_product_flag = false;
     var update_admin_flag = false;
+    var update_category_flag = false;
 
-    // tab status
-    $('.nav-tabs li').click(function() {
-        var id = $(this).data("id");
-        var url = base_url + 'home/settab?id=' + id;
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
+
+    $('.sub-product').click(function(e){        
+        var category_id =  $(this).data("id");
+        var params = {
+            category_id: category_id
+        };        
         $.ajax({
-            type: "GET",
-            url: url,
-            success: function(result) {    
-                console.log(result);           
-            }           
+            type: "POST",
+            url: base_url + 'product/index',
+            data: params,
+            dataType: 'json',
+            success: function(result) {                
+            },
+            error: function(error) {
+            }
         });
     });
 
@@ -34,7 +44,8 @@ $(document).ready(function() {
             admin_id: $('#admin_id').val(),
             admin_name: $('#admin_name').val(),
             admin_email: $('#admin_email').val(),
-            admin_shop: $('#admin_shop').val()
+            admin_shop: $('#admin_shop').val(),
+            admin_role: $('#admin_role').val()
         }; 
         var url = base_url;
         if(update_admin_flag == true){
@@ -106,6 +117,7 @@ $(document).ready(function() {
                     $('#admin_email').val(result.admin_email);  
                     $('#admin_shop').val(result.shop);    
                     $('#admin_id').val(result.id); 
+                    $('#admin_role').val(result.admin_role);
                     update_admin_flag = true;            
                 }
             },
@@ -316,12 +328,12 @@ $(document).ready(function() {
                     $('#category').val(result.category); 
                     $('#classification').val(result.classification);
                     $('#origin_price').val(result.origin_price);   
-                    $('#promotion_price').val(result.promotion_price); 
+                    $('#promotion_price').val(result.promotionPrice); 
                     $('#inventory').val(result.inventory);   
-                    $('#express_fee').val(result.express_fee); 
-                    $('#group_num').val(result.group_num);
-                    $('#group_price').val(result.group_price);
-                    $('#group_time').val(result.group_time);
+                    $('#express_fee').val(result.expressFee); 
+                    $('#group_num').val(result.groupNum);
+                    $('#group_price').val(result.groupPrice);
+                    $('#group_time').val(result.groupTime);
                     update_product_flag = true;            
                 }
             },
@@ -395,6 +407,7 @@ $(document).ready(function() {
             data: form_data,
             type: 'post',
             success: function (response) {  
+                console.log(response);
                 if(response == '1'){
                     alert('File exist already!');
                 } else {
@@ -429,5 +442,102 @@ $(document).ready(function() {
             }
         });
     }
+
+    /***************************** */
+    /* Category                    *
+    /******************************/ 
+
+    $('#add_category').click(function() {
+        $('#category_modal').modal('show');
+    });
+    $('.edit-category').click(function() {
+        $('#category_modal').modal('show');
+    });
+    $('#close_category').click(function() {
+        $('#category_modal').modal('hide');
+    });
+
+    $('#save_category').click(function() {
+        var params = {
+            category_id: $('#category_id').val(),
+            category_name: $('#category_name').val(),
+            
+        }; 
+        var url = base_url;
+        if(update_category_flag == true){
+            url += 'product/updatecategory';
+        } else {
+            url += 'product/add_category';
+        }      
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: params,
+            dataType: 'json',
+            success: function(result) {
+                if(result == false) {
+                    alert('failed!');
+                } else {
+                    location.reload();                   
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+
+     // edit the infomation of the selected product
+    $('#category_list .edit-category').on("click",function(){
+
+        $('#category_modal').modal('show');
+
+        var category_id =  $(this).data("id");
+        var params = {
+            category_id: category_id
+        }
+        $.ajax({
+            type: "POST",
+            url: base_url + 'product/getcategory',
+            data: params,
+            dataType: 'json',
+            success: function(result) {
+                if(result == false) {
+                    alert('failed!');
+                } else {
+                    $('#category_id').val(result.id);
+                    $('#category_name').val(result.name);                    
+                    update_category_flag = true;            
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+
+    // delete the infomation of the selected category
+    $('#category_list .delete-category').on("click",function(){
+        var category_id =  $(this).data("id");
+        var params = {
+            category_id: category_id
+        };        
+        $.ajax({
+            type: "POST",
+            url: base_url + 'product/deletecategory',
+            data: params,
+            dataType: 'json',
+            success: function(result) {
+                if(result == false) {
+                    alert('failed!');
+                } else {
+                    location.reload();                   
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
 
 });

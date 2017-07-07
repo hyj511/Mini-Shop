@@ -13,7 +13,7 @@
     <link href="<?php echo base_url('assets/css/home1.css');?>" rel="stylesheet">   
 </head>
 <body>
-    <div id="wrapper" class="active"> 
+    <div id="wrapper" class="active">  
         <div class="container-fluid" id="header">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -56,7 +56,7 @@
 					</li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid --> 
+		</div><!-- /.container-fluid -->
         <!-- Sidebar -->
                 <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -85,7 +85,7 @@
                     <div class="col-md-11 col-md-offset-1">
                         <!--<p class="well lead">Mini Shop</p>-->
                         <div id="page_content">
-                            <?php include('product_table.php');?>                                       
+                            <?php include('order_table.php');?>                                       
                         </div>
                         <!--<p class="well lead">An Experiment using the sidebar (<a href="http://animeshmanglik.name">animeshmanglik.name</a>)</p> -->
                     </div>

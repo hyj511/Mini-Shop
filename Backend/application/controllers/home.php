@@ -27,28 +27,71 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		if($this->logged == 1) {
+			$admin_list = $this->admin_model->getAll();	
 			$shop_list = $this->shop_model->getAll();
-			$admin_list = $this->admin_model->getAll();
-			$product_list = $this->product_model->getAll();
-			$category_list = $this->product_model->getAllCategory();
-			$order_list = $this->order_model->getAll();
-
-			$data['admin_list'] = $admin_list;
+			$roles = $this->admin_model->getRoles();		
+			foreach($admin_list as $key=>$admin) {
+				$shop = $this->shop_model->getShopById($admin['shop']);
+				$role = $this->admin_model->getRoleById($admin['admin_role']);
+				$admin_list[$key]['shop'] = $shop[0]['shop_name'];
+				$admin_list[$key]['admin_role'] = $role[0]['role_name'];
+			}
+			$data['admin_list'] = $admin_list;			
 			$data['shop_list'] = $shop_list;
-			$data['product_list'] = $product_list;
-			$data['category_list'] = $category_list;
-			$data['order_list'] = $order_list;
-
-			$this->load->view('home_view', $data);
+			$data['roles'] = $roles;
+			$this->load->view('home', $data);
 		} else {			
 			redirect('login','refresh');		
 		}
 	}
 
-	// set tab status
-	public function settab() 
+	public function showShop ()
 	{
-		$id = $this->input->get('id');
-		$this->session->set_userdata('tab_status', $id);
-	}		
+		if($this->logged == 1) {
+			$shop_list = $this->shop_model->getAll();		
+			$data['shop_list'] = $shop_list;			
+			$this->load->view('shop', $data);
+		} else {			
+			redirect('login','refresh');		
+		}
+	}
+
+	public function showProduct ()
+	{
+		if($this->logged == 1) {
+			$product_list = $this->product_model->getAll();	
+			$category_list = $this->product_model->getAllCategory();	
+			foreach($product_list as $key=>$product) {
+				$category = $this->product_model->getCategoryById($product['category']);
+				$product_list[$key]['category'] = $category[0]['name'];
+			}
+			$data['product_list'] = $product_list;		
+			$data['category_list'] = $category_list;	
+			$this->load->view('product', $data);
+		} else {			
+			redirect('login','refresh');		
+		}
+	}
+
+	public function showOrder ()
+	{
+		if($this->logged == 1) {
+			$order_list = $this->order_model->getAll();		
+			$data['order_list'] = $order_list;			
+			$this->load->view('order', $data);
+		} else {			
+			redirect('login','refresh');		
+		}
+	}	
+
+	public function showCategory ()
+	{
+		if($this->logged == 1) {
+			$category_list = $this->product_model->getAllCategory();		
+			$data['category_list'] = $category_list;			
+			$this->load->view('category', $data);
+		} else {			
+			redirect('login','refresh');		
+		}
+	}	
 }

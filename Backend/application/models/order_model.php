@@ -31,9 +31,17 @@ class Order_model extends CI_Model {
         return $result = $query->result_array();
 	}
 
-	  /* get a record by id */
+	/* get a record by id */
 	public function getOrderById($id) {
 		$this->db->where('id', $id);
+        $this->db->from('order');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
+
+	/* get a record by group id */
+	public function getOrderByGroupId($id) {
+		$this->db->where('group_id', $id);
         $this->db->from('order');
         $query = $this->db->get();
         return $result = $query->result_array();
