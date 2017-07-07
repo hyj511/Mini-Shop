@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+var util = require('../../utils/util.js')
 var app = getApp()
 Page({
   data: {
@@ -31,88 +32,22 @@ Page({
         },
       ]
     },
-    buttons: [//TODO get data from server,
-      {
-        id: '0',
-        name: '肉蛋'
-      },
-      {
-        id: '1',
-        name: '千货'
-      },
-      {
-        id: '2',
-        name: '特饮'
-      },
-      {
-        id: '3',
-        name: '速食'
-      },
-      {
-        id: '4',
-        name: '肉蛋'
-      },
-      {
-        id: '5',
-        name: '千货'
-      },
-      {
-        id: '6',
-        name: '特饮'
-      },
-    ],
-    products: [//TODO get data from server
-      {
-        id: '0',
-        src: '../../images/commodity.png',
-        description: '奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装',
-        price1: '69.00',
-        price2: '59.00'
-      },
-      {
-        id: '1',
-        src: '../../images/commodity.png',
-        description: '奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装',
-        price1: '43.00',
-        price2: '35.00'
-      },
-      {
-        id: '2',
-        src: '../../images/commodity.png',
-        description: '奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装',
-        price1: '89.00',
-        price2: '69.00'
-      },
-      {
-        id: '3',
-        src: '../../images/commodity.png',
-        description: '奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装',
-        price1: '169.00',
-        price2: '159.00'
-      },
-      {
-        id: '4',
-        src: '../../images/commodity.png',
-        description: '奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装',
-        price1: '29.00',
-        price2: '19.00'
-      },
-    ]
-  },
-  detailClick: function (e) {
-    wx.navigateTo({
-      url: '../productDetail/productDetail'
-      
-      //url: '../waitingOrder/waitingOrder'
-      //url: '../retreatOrder/retreatOrder'
-    });
+    buttons: [],
+    productImgs: [],
+    products: [],
+    beforeproductImgs: [],
   },
   /**
-   * 生命周期函数--监听页面加载
-   */
+ * 生命周期函数--监听页面加载
+ */
   onLoad: function () {
     console.log('onLoad')
-    var that = this
+    this.getCategory();
+    // get the categorylist from backend-server
+ 
+
+    
+    /*var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
@@ -120,7 +55,116 @@ Page({
         //userInfo:userInfo
       })
     })
+    */
   },
+
+  getCategory: function () {//read the category list
+    var that = this;   // 这个地方非常重要，重置data{}里数据时候setData方法的this应为以及函数的this, 如果在下方的sucess直接写this就变成了wx.request()的this了
+    wx.request({
+      url: 'https://hly.weifengkeji.top/index.php/product/get_category',//请求地址
+      data: {
+      },
+      header: {//请求头
+        "Content-Type": "applciation/json"
+      },
+      method: "GET",//get为默认方法/POST
+      success: function (res) {
+        console.log('submit success');
+        console.log(res.data);//res.data相当于ajax里面的data,为后台返回的数据
+　　　　  that.setData({//如果在sucess直接写this就变成了wx.request()的this了.必须为getdata函数的this,不然无法重置调用函数
+　　　　　　buttons: res.data
+　　　　　　　　　　})
+
+      },
+      fail: function (err) { },//请求失败
+      complete: function () { }//请求完成后执行的函数
+    })
+  },
+  makeImageUrls: function (i,imgUrl) {
+    console.log(imgUrl);
+    for (let i=0;i<this.data.products.length;i++) {
+      this.data.products[i].imageUrl = imgUrl;  
+      console.log(this.data.products);
+    }
+    
+  },
+  clickCategory: function (e) { // get the prodcut's detail information
+    console.log(e.target.dataset.id);
+    var that = this;
+    var categoryID = e.target.dataset.id;
+    var imagePath;
+    var app = getApp();
+    wx.request({
+      url: 'https://hly.weifengkeji.top/index.php/product/getall',//请求地址
+      data: {
+        category : categoryID    
+      },
+      header: {//请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: "POST",//get为默认方法/POST
+      success: function (res) {
+        console.log('submit success');
+        console.log(res.data);//res.data相当于ajax里面的data,为后台返回的数据
+        //console.log(res.data.imageUrl);//res.data相当于ajax里面的data,为后台返回的数据
+        app.globalData.cnt = 0;
+        for (let i=0;i<res.data.length;i++){
+          console.log('detail image urls');
+           console.log(res.data[i].imageUrl); 
+           
+            wx.downloadFile({
+              url: res.data[i].imageUrl, //仅为示例，并非真实的资源
+              type: 'image',
+              success: function (res) {
+                that.makeImageUrls(app.globalData.cnt,res.tempFilePath);
+                app.globalData.cnt++;
+              }
+            })
+        }
+        that.setData({//如果在sucess直接写this就变成了wx.request()的this了.必须为getdata函数的this,不然无法重置调用函数
+          products : res.data
+                    
+        })
+        console.log('submit success11111');
+
+      },
+      fail: function (err) { },//请求失败
+      complete: function () { }//请求完成后执行的函数
+    })
+   
+    
+    /*wx.downloadFile({
+      url: 'http://example.com/audio/123', //仅为示例，并非真实的资源
+      success: function (res) {
+        wx.playVoice({
+          filePath: res.tempFilePath
+        })
+      }
+    })*/
+  },
+
+  makeBeforeImageUrls: function (i, imgUrl) {
+    console.log(imgUrl);
+
+    this.data.beforeproductImgs[i].imgUrl = imgUrl;
+    console.log("each product images");
+    console.log(this.data.beforeproductImgs[i].imgUrl);
+
+
+  },
+  
+  detailClick: function (e) {
+    var that = this;
+    util.productId = e.target.dataset.id;
+    console.log(util.productId);
+    wx.navigateTo({
+      url: '../productDetail/productDetail'
+
+    });
+
+ 
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

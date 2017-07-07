@@ -19,3 +19,7 @@ function formatNumber(n) {
 module.exports = {
   formatTime: formatTime
 }
+
+var groupBuyMode = false;
+var productId = 0; //when user click the detail button, store product id.
+var beforeProductImgs = [];

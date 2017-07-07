@@ -86,7 +86,7 @@ button.appbutton2:hover {
 
 .product-info {
   display: inline-block;
-  max-width: calc(100% - 120px);
+  width: calc(100% - 120px);
   vertical-align: middle;
 }
 
@@ -346,4 +346,14 @@ text.go-detail {
   display: inline-block;
   vertical-align: middle;
   line-height: 20px;
+}
+.groupBuying {
+  line-height:20px;
+  padding:0px 10px;
+  margin-left:5px;
+  display:inline-block;
+  border-radius:2px;
+  font-size:14px;
+  color:white;
+  background-color:#68bc5e;
 }

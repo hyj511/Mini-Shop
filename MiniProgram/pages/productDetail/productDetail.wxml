@@ -3,9 +3,9 @@
 <view class="productDetail">
   <view class="section swiper-area">
     <swiper indicator-color="Rgba(100,100,100,0.5)" indicator-active-color="#fff" class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
-      <block wx:for="{{swiper.images}}" wx:for-item="image">
+      <block wx:for="{{swiperImages}}" wx:for-item="beforeImage">
         <swiper-item>
-          <image class="swiper-img" src="../../images/commodity-detail.png"></image>
+          <image class="swiper-img" src="{{beforeImage.imgUrl}}"></image>
         </swiper-item>
       </block>
     </swiper>
@@ -16,15 +16,15 @@
         奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装
       </view>
       <view class="prices">
-        <text class="price1">¥495.9</text>
-        <text class="price2">拼团价: ¥59.00</text>
+        <text class="price1">¥{{productDetailPrices[0].originPrice}}</text>
+        <text class="price2">拼团价: ¥{{productDetailPrices[0].groupPrice}}</text>
       </view>
     </view>
   </view>
   <view class="info-area">
     <view class="item">
       <text class="left">快递运费:
-        <text style="color: #db5078; font-weight:600;">¥15</text>
+        <text style="color: #db5078; font-weight:600;">¥{{productDetailPrices[0].expressFee}}</text>
       </text>
       <text class="right" style="min-width:60px;">库存: </text>
     </view>
@@ -67,12 +67,12 @@
 </view>
 <view class="button-area">
   <view class="sub-button">
-    <button class="button appbutton1" bindtap="actionSheetTap">
+    <button class="button appbutton1" bindtap="goBuyNow">
       立即购买
     </button>
   </view>
   <view class="sub-button">
-    <button class="button appbutton2" bindtap="actionSheetTap">
+    <button class="button appbutton2" bindtap="goGroupBuy">
       发起拼团
     </button>
   </view>
@@ -98,9 +98,9 @@
         </view>
         <view class="price">
           <text class="price1">¥489</text>
-          <button class="button appbutton2">
+          <view class="groupBuying" hidden="{{groupBuyingHidden}}">
             拼团
-          </button>
+          </view>
         </view>
         <view class="remain">
           库存

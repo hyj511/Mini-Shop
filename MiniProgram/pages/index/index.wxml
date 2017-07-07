@@ -17,7 +17,7 @@
     <scroll-view class="scroll-view_H" scroll-x="true" scroll-with-animation="true">
       <block wx:for="{{buttons}}" wx:for-item="button">
         <view class="scroll-view-item_H">
-          <button class="scroll-button">{{button.name}}</button>
+          <button class="scroll-button" data-id="{{button.id}}" bindtap="clickCategory">{{button.name}}</button>
         </view>
       </block>
     </scroll-view>

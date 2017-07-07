@@ -23,3 +23,7 @@ button.appbutton6 {
 .address-area .right {
   margin-top: 20px;
 }
+.groupBuying {
+  display: block;
+  line-height: 22px;
+} 

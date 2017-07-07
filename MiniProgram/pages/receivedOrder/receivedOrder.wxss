@@ -14,4 +14,8 @@
 .pending-item.receivedOrder .total{
   color: #000;
 }
+.groupBuying {
+  display: block;
+  line-height: 22px;
+} 
 

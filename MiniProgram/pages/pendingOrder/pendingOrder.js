@@ -1,4 +1,5 @@
 // pages/pendingOrder/pendingOrder.js
+var util = require('../../utils/util.js')
 Page({
 
   /**
@@ -7,7 +8,16 @@ Page({
   data: {
     deliveryActive: 'active',
     storeActive: '',
-    storeHidden: false
+    storeHidden: false,
+    groupBuyingHidden: true
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.setData({
+      groupBuyingHidden: !util.groupBuyMode
+    })
   },
   /*
     Called when user click 快递配送

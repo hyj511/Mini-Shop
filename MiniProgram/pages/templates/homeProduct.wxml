@@ -1,7 +1,7 @@
 <template name="homeProduct" class="home-product">
   <view class="product-item">
     <view class="product-image">
-      <image src="{{src}}"></image>
+      <image src="{{imageUrl}}"></image>
     </view>
     <view class="product-info">
       <view class="product-description">
@@ -9,12 +9,12 @@
       </view>
       <view class="product-price">
         <text class="price1">
-          ¥{{price1}}
+          ¥{{originPrice}}
         </text>
         <text class="price2">
-          拼团价: ¥{{price2}}
+          拼团价: ¥{{groupPrice}}
         </text>
-        <text class="go-detail" bindtap="detailClick">详情 ></text>
+        <text class="go-detail" data-id="{{id}}" bindtap="detailClick">详情 ></text>
       </view>
     </view>
   </view>
