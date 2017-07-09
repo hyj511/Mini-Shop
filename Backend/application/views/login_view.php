@@ -26,13 +26,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <input type="password" placeholder="password" id="admin_pwd">
                 <input type="email" placeholder="email address" id="admin_email">
                 <button id="regAdmin">create</button>
-                <p class="message">Already registered? <a href="#">Sign In</a></p>
+                <p class="message" id="signin">Already registered? <a href="#">Sign In</a></p>
             </form>
-            <form class="login-form">
-                <input type="text" placeholder="username" id="login_name">
-                <input type="password" placeholder="password" id="login_pwd">
-                <button id="login">login</button>
-                <p class="message">Not registered? <a href="#">Create an account</a></p>
+            <form class="login-form" action="<?php echo base_url('login/postLogin');?>" method="POST">
+                <input type="text" placeholder="username" id="login_name" name="login_name">
+                <input type="password" placeholder="password" id="login_pwd" name="login_pwd">
+                <button type="submit" id="login">login</button>
+                <p class="message" id="create_account">Not registered? <a href="#">Create an account</a></p>
+                <p class="message" id="forgot">Didn't you remember? <a href="<?php echo base_url('login/forgot');?>">Forgot password</a></p>
             </form>
         </div>
     </div>

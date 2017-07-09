@@ -153,7 +153,22 @@
 }
 #page_content{
     margin: 5% 5% auto 10%;
+    cursor: pointer;
 }
 .table i {
     margin-left: 20px;
 }
+#product_thumb {
+    width: 100px;
+}
+.product_thumb_content {
+    /*width: 100px;*/
+    height: 100px;
+    float: left;
+    background-color: grey
+}
+.product_cover_img {
+    margin-left: 5px;
+}
+
+

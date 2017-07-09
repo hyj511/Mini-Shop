@@ -5,7 +5,7 @@
                 <div class="dark-bar">
 			        <div class="row">
 			        	<div class="col-md-12 text-center">
-							<h4>Shop</h4>
+							<h4>门店</h4>
 			           	</div>
 			        </div>
 			    </div>
@@ -34,7 +34,7 @@
 </div>     
 
 <div class="text-right" style="margin-top: 20px;">
-    <button class="btn btn-primary" id="add_shop">Add Shop</button>
+    <button class="btn btn-primary" id="add_shop">新建门店</button>
 </div> 
 
 <div class="table-responsive">          

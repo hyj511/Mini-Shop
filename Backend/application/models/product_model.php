@@ -60,6 +60,14 @@ class Product_model extends CI_Model {
         return $result;
 	}	
 
+	/* get records by name */
+    public function getProductsByName($name) {
+		$this->db->like('name', $name);
+		$this->db->from('products');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
+
 	/**************************/
 	/*  Category Model        *
 	/**************************/
@@ -108,10 +116,45 @@ class Product_model extends CI_Model {
 	/*  Group Buy Model       *
 	/**************************/
 
+
 	/* get a group buy information by product id */
 	public function getGroupByProductId($id) {
 		$this->db->where('product_id', $id);
         $this->db->from('group_buy');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
+
+	/* insert a record*/
+	public function addGroup($data) {
+		$query = $this->db->insert('group_buy', $data);
+	
+		if($query) {
+			return $this->db->insert_id();
+		}
+		else {
+			return false;
+		}
+	}
+
+	/* update a record */
+	public function updateGroup($id, $data) {
+		$this->db->where('id', $id);
+        $result = $this->db->update('group_buy', $data);
+        return $result;
+	}	
+
+	/* get a group buy information by id */
+	public function getGroupById($id) {
+		$this->db->where('id', $id);
+        $this->db->from('group_buy');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
+
+	/* get all record */
+    public function getAllGroup() {
+		$this->db->from('group_buy');
         $query = $this->db->get();
         return $result = $query->result_array();
 	}

@@ -51,7 +51,7 @@
 							<li class=""><a href="#">Other Link</a></li>
 							<li class=""><a href="#">Other Link</a></li>-->
 							<li class="divider"></li>
-							<li><a href="<?php echo base_url('index.php/login/logout');?>">Logout</a></li>
+							<li><a href="<?php echo base_url('login/logout');?>">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -64,15 +64,15 @@
                 <li class="sidebar-brand"><a id="menu-toggle" href="#">&nbsp;&nbsp;&nbsp;Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
             </ul>
             <ul class="sidebar-nav" id="sidebar">
-                <li id="nav_home"><a href="<?php echo base_url('index.php/home/index');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理员管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                <li id="nav_shop"><a href="<?php echo base_url('index.php/home/showShop');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门店管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>                
+                <li id="nav_home"><a href="<?php echo base_url('home/index');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理员管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li id="nav_shop"><a href="<?php echo base_url('home/showShop');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门店管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>                
                 <li id="nav_product"><a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品管理<span class="sub_icon glyphicon glyphicon-link"></span></a>
                     <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
-                        <li><a href="<?php echo base_url('index.php/home/showCategory');?>">&nbsp;&nbsp;&nbsp;分类管理</a></li>
-                        <li><a href="<?php echo base_url('index.php/home/showProduct');?>">&nbsp;&nbsp;&nbsp;商品列表</a></li>
+                        <li><a href="<?php echo base_url('home/showCategory');?>">&nbsp;&nbsp;&nbsp;分类管理</a></li>
+                        <li><a href="<?php echo base_url('home/showProduct');?>">&nbsp;&nbsp;&nbsp;商品列表</a></li>
                     </ul>
 		        </li>
-                <li id="nav_order"><a href="<?php echo base_url('index.php/home/showOrder');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li id="nav_order"><a href="<?php echo base_url('order/getOrderList');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
                 <li id="nav_order"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宣传管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
             </ul>
         </div>

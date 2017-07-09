@@ -6,9 +6,11 @@
     <title>mini shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/lib/bootstrap-3.3.7/dist/css/bootstrap.min.css');?>" rel="stylesheet">
+    <!-- Datetime Picker-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/lib/datetimepicker/build/jquery.datetimepicker.min.css');?>"/ >
     <!-- Font Awesome CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/lib/font-awesome/css/font-awesome.min.css');?>" rel="stylesheet">
 
     <link href="<?php echo base_url('assets/css/home1.css');?>" rel="stylesheet">   
 </head>
@@ -51,7 +53,7 @@
 							<li class=""><a href="#">Other Link</a></li>
 							<li class=""><a href="#">Other Link</a></li>-->
 							<li class="divider"></li>
-							<li><a href="<?php echo base_url('index.php/login/logout');?>">Logout</a></li>
+							<li><a href="<?php echo base_url('login/logout');?>">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -64,16 +66,16 @@
                 <li class="sidebar-brand"><a id="menu-toggle" href="#">&nbsp;&nbsp;&nbsp;Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
             </ul>
             <ul class="sidebar-nav" id="sidebar">
-                <li id="nav_home"><a href="<?php echo base_url('index.php/home/index');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理员管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                <li id="nav_shop"><a href="<?php echo base_url('index.php/home/showShop');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门店管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>                
+                <li id="nav_home"><a href="<?php echo base_url('home/index');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理员管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li id="nav_shop"><a href="<?php echo base_url('home/showShop');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门店管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>                
                 <li id="nav_product"><a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品管理<span class="sub_icon glyphicon glyphicon-link"></span></a>
                     <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
-                        <li><a href="<?php echo base_url('index.php/home/showCategory');?>">&nbsp;&nbsp;&nbsp;分类管理</a></li>
-                        <li><a href="<?php echo base_url('index.php/home/showProduct');?>">&nbsp;&nbsp;&nbsp;商品列表</a></li>
+                        <li><a href="<?php echo base_url('home/showCategory');?>">&nbsp;&nbsp;&nbsp;分类管理</a></li>
+                        <li><a href="<?php echo base_url('home/showProduct');?>">&nbsp;&nbsp;&nbsp;商品列表</a></li>
                     </ul>
 		        </li>
-                <li id="nav_order"><a href="<?php echo base_url('index.php/home/showOrder');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                <li id="nav_order"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宣传管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li id="nav_order"><a href="<?php echo base_url('order/getOrderList');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li id="nav_order"><a href="<?php echo base_url('publicity');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宣传管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
             </ul>
         </div>
             
@@ -96,9 +98,11 @@
     </div>
 
     <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="<?php echo base_url('assets/lib/jquery/jquery.min.js');?>"></script>
     <!-- Bootstrap Javascript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url('assets/lib/bootstrap-3.3.7/dist/js/bootstrap.min.js');?>"></script>
+    <!-- Datetime Picker-->
+    <script src="<?php echo base_url('assets/lib/datetimepicker/build/jquery.datetimepicker.full.min.js');?>"></script>
     <!-- Custom Javascript -->
     <script src="<?php echo base_url('assets/js/home.js');?>"></script>
 </body>

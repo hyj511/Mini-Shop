@@ -25,7 +25,7 @@ class Admin_model extends CI_Model {
 	}
 
      /* get a record by admin name */
-	public function getShopByName($name) {
+	public function getAdminByName($name) {
 		$this->db->where('admin_name', $name);
         $this->db->from('admins');
         $query = $this->db->get();

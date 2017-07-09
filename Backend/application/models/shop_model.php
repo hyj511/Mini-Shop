@@ -44,6 +44,14 @@ class Shop_model extends CI_Model {
         $query = $this->db->get();
         return $result = $query->result_array();
 	}
+
+	/* get a record by name */
+	public function getShopByName($name) {
+		$this->db->like('shop_name', $name);
+        $this->db->from('shop');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
 	
      /* update a record */
 	public function update($id, $data) {

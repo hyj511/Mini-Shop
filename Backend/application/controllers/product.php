@@ -42,9 +42,6 @@ class Product extends CI_Controller {
 		$product_promotion_price = $this->input->post('product_promotion_price');
 		$product_inventory = $this->input->post('product_inventory');
 		$product_express_fee = $this->input->post('product_express_fee');
-		$group_num = $this->input->post('group_num');
-		$group_price = $this->input->post('group_price');
-		$group_time = $this->input->post('group_time');
 		$data = array(
 			'name' => $product_name, 
 			'description' => $product_description,
@@ -53,10 +50,7 @@ class Product extends CI_Controller {
 			'originPrice' => $product_origin_price, 
 			'promotionPrice' => $product_promotion_price,
 			'inventory' => $product_inventory, 
-			'expressFee' => $product_express_fee,
-			'groupNum' => $group_num,
-			'groupPrice' => $group_price,
-			'groupTime' => $group_time
+			'expressFee' => $product_express_fee
 		);
 
 		$result = $this->product_model->add($data);
@@ -77,6 +71,12 @@ class Product extends CI_Controller {
 	{
 		$product_id = $this->input->post('product_id');		
 		$result = $this->product_model->getProductById($product_id);
+		$covers = $this->file_model->getUrlByProductId($product_id);
+		$cover_imgs = array();
+		foreach($covers as $key=>$value){
+			array_push($cover_imgs, $value['img_url']);
+		}
+		$result[0]['covers'] = $cover_imgs;
 		echo json_encode($result[0]);
 	}
 
@@ -91,10 +91,7 @@ class Product extends CI_Controller {
 		$product_origin_price = $this->input->post('product_origin_price');
 		$product_promotion_price = $this->input->post('product_promotion_price');
 		$product_inventory = $this->input->post('product_inventory');
-		$product_express_fee = $this->input->post('product_express_fee');
-		$group_num = $this->input->post('group_num');
-		$group_price = $this->input->post('group_price');
-		$group_time = $this->input->post('group_time');
+		$product_express_fee = $this->input->post('product_express_fee');		
 		$data = array(
 			'name' => $product_name, 
 			'description' => $product_description,
@@ -103,22 +100,19 @@ class Product extends CI_Controller {
 			'originPrice' => $product_origin_price, 
 			'promotionPrice' => $product_promotion_price,
 			'inventory' => $product_inventory, 
-			'expressFee' => $product_express_fee,
-			'groupNum' => $group_num,
-			'groupPrice' => $group_price,
-			'groupTime' => $group_time
+			'expressFee' => $product_express_fee			
 		);
 		$result = $this->product_model->update($product_id, $data);
 		echo json_encode($result);
 	}
 
-	// upload image file
+	// upload thumb image
 	public function do_upload()
 	{
 		if(isset($_FILES['file']['name'])) {
 			$file_name = explode(".", $_FILES['file']['name']);
 			$file_extension = $file_name[1];
-			$config['max_filename'] = $this->genFileName().$file_extension;// $_FILES['file']['name'];
+			$config['max_filename'] = $_FILES['file']['name'];//$this->genFileName().'.'.$file_extension;// $_FILES['file']['name'];
 		} else {
 			$config['max_filename'] = 'default.jpg';
 		}		
@@ -128,7 +122,7 @@ class Product extends CI_Controller {
         $config['allowed_types'] = '*';		        
 		$config['overwrite'] = TRUE;
         //$config['encrypt_name'] = TRUE;
-        $config['max_size'] = '1024'; //1 MB
+        $config['max_size'] = '10240'; //1 MB
  
         if (isset($_FILES['file']['name'])) {
             if (0 < $_FILES['file']['error']) {
@@ -154,13 +148,61 @@ class Product extends CI_Controller {
 	public function save_url()
 	{
 		$product_id = $this->input->post('product_id');
+		$img_url = $this->input->post('img_url');	
+		$data = array(
+			'imageUrl' => $img_url
+		);
+		$result = $this->product_model->update($product_id, $data);
+		echo json_encode($result);
+	}
+
+	// upload thumb image
+	public function do_upload_cover()
+	{
+		if(isset($_FILES['file']['name'])) {			
+			$config['max_filename'] = $_FILES['file']['name'];
+		} else {
+			$config['max_filename'] = 'default.jpg';
+		}		
+
+		//upload file
+        $config['upload_path'] = 'uploads/';
+        $config['allowed_types'] = '*';		        
+		$config['overwrite'] = TRUE;
+        //$config['encrypt_name'] = TRUE;
+        $config['max_size'] = '10240'; //1 MB
+ 
+        if (isset($_FILES['file']['name'])) {
+            if (0 < $_FILES['file']['error']) {
+                echo 'Error during file upload' . $_FILES['file']['error'];
+            } else {
+                if (file_exists('uploads/' . $_FILES['file']['name'])) {
+				     echo '1';
+                } else {
+                    $this->load->library('upload', $config);
+                    if (!$this->upload->do_upload('file')) {
+                        echo $this->upload->display_errors();
+                    } else {
+                        echo $_FILES['file']['name'];
+                    }
+                }
+            }
+        } else {
+            echo 'default.jpg';
+        }
+	}
+
+	// save image url
+	public function save_url_cover()
+	{
+		$product_id = $this->input->post('product_id');
 		$img_url = $this->input->post('img_url');
 		$data = array(
 			'product_id' => $product_id, 
 			'img_url' => $img_url
 		);
 		$result = $this->file_model->add($data);
-		echo json_encode($result);
+		echo json_encode($result);			
 	}
 
 	//generate file name by datetime
@@ -256,6 +298,10 @@ class Product extends CI_Controller {
 		echo json_encode($images);
 	}
 
+	/*************************/
+	/* Group Buy              /
+	/*************************/
+
 	// get group buy infomation
 	public function getgroup()
 	{
@@ -268,7 +314,45 @@ class Product extends CI_Controller {
 		$result['price'] = $group[0]['price'];
 		$result['endtime'] = $group[0]['endtime'];
 		$result['starttime'] = $group[0]['starttime'];
+		$result['id'] = $group[0]['id'];
 		echo json_encode($result);
 	}
 
+	/* the function to insert new group*/
+	public function addgroup()
+	{
+		$group_num = $this->input->post('group_num');
+		$group_price = $this->input->post('group_price');
+		$group_time = $this->input->post('group_time');
+		$product_id = $this->input->post('product_id');
+		$data = array(			
+			'number' => $group_num,
+			'price' => $group_price,
+			'endtime' => $group_time,
+			'starttime' => date('Y-m-d H:i:s'),
+			'product_id' => $product_id
+		);
+
+		$result = $this->product_model->addGroup($data);
+
+		echo json_encode($result);
+	}
+
+	/* the function to update the product*/
+	public function updategroup()
+	{
+		$group_id = $this->input->post('group_id');
+		$group_num = $this->input->post('group_num');
+		$group_price = $this->input->post('group_price');
+		$group_time = $this->input->post('group_time');
+		$product_id = $this->input->post('product_id');
+		$data = array(
+			'number' => $group_num,
+			'price' => $group_price,
+			'endtime' => $group_time,
+			'starttime' => date('Y-m-d H:i:s'),
+		);
+		$result = $this->product_model->updateGroup($group_id, $data);
+		echo json_encode($result);
+	}
 }

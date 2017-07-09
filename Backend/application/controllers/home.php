@@ -63,7 +63,17 @@ class Home extends CI_Controller {
 			$category_list = $this->product_model->getAllCategory();	
 			foreach($product_list as $key=>$product) {
 				$category = $this->product_model->getCategoryById($product['category']);
+				$group_buy = $this->product_model->getGroupByProductId($product['id']);
 				$product_list[$key]['category'] = $category[0]['name'];
+				if($group_buy) {
+					$product_list[$key]['group_number'] = $group_buy[0]['number'];
+					$product_list[$key]['group_price'] = $group_buy[0]['price'];
+					$product_list[$key]['group_time'] = $group_buy[0]['endtime'];
+				} else {
+					$product_list[$key]['group_number'] = '';
+					$product_list[$key]['group_price'] = '';
+					$product_list[$key]['group_time'] = '';
+				}
 			}
 			$data['product_list'] = $product_list;		
 			$data['category_list'] = $category_list;	
@@ -76,7 +86,61 @@ class Home extends CI_Controller {
 	public function showOrder ()
 	{
 		if($this->logged == 1) {
-			$order_list = $this->order_model->getAll();		
+			$order_list = $this->order_model->getAll();	
+			foreach($order_list as $key=>$value){
+				$product = $this->product_model->getProductById($value['product_id']);
+				$shop = $this->shop_model->getShopById($value['shop_id']);
+				// product name
+				if($product){
+					$order_list[$key]['product_id'] = $product[0]['name'];
+				} else {
+					$order_list[$key]['product_id'] = '';
+				}
+				// shop name
+				if($shop){
+					$order_list[$key]['shop_name'] = $shop[0]['shop_name'];
+				} else {
+					$order_list[$key]['shop_name'] = '';
+				}
+				// delivery type
+				if($value['delivery_type'] == 0){
+					$order_list[$key]['delivery_type'] = '自提';
+				} else {
+					$order_list[$key]['delivery_type'] = '发货';
+				}	
+				// buy type
+				if($value['buy_type'] == 0){
+					$order_list[$key]['buy_type'] = '立即购买';
+				} else {
+					$order_list[$key]['buy_type'] = '拼团';
+				}	
+				// pay state
+				switch($order_list[$key]['pay_state']){
+					case 0: $order_list[$key]['pay_state'] = '未支付'; break;
+					case 1: $order_list[$key]['pay_state'] = '拼团中'; break;
+					case 2: $order_list[$key]['pay_state'] = '拼团失败'; break;
+					case 3: $order_list[$key]['pay_state'] = '拼团成功'; break;					
+				}
+				// group count	
+				if($value['group_id'] != null){
+					$group = $this->product_model->getGroupById($value['group_id']);
+					if($group){
+						$order_list[$key]['groupCount'] = $group[0]['count'];
+					}
+				} else {
+					$order_list[$key]['groupCount'] = '';
+				}	
+				// group buy remaining time	
+				/*if($value['group_id'] != null){
+					$group = $this->product_model->getGroupById($value['group_id']);
+					if($group){
+						$group_start_time = date('Y-m-d H:i:s', strtotime($group[0]['starttime']));
+						$order_list[$key]['groupTime'] = $group_start_time;
+					}
+				} else {
+					$order_list[$key]['groupTime'] = '';
+				}	*/				
+			}	
 			$data['order_list'] = $order_list;			
 			$this->load->view('order', $data);
 		} else {			
