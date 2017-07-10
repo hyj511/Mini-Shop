@@ -76,6 +76,7 @@
 		        </li>
                 <li id="nav_order"><a href="<?php echo base_url('order/getOrderList');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
                 <li id="nav_order"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宣传管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li id="nav_order"><a href="<?php echo base_url('statistic');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据统计<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
             </ul>
         </div>
             
@@ -104,7 +105,7 @@
     <!-- Datetime Picker-->
     <script src="<?php echo base_url('assets/lib/datetimepicker/build/jquery.datetimepicker.full.min.js');?>"></script>
     <!-- Custom Javascript -->
-    <script src="<?php echo base_url('assets/js/home.js');?>"></script>
+    <!--<script src="<?php echo base_url('assets/js/home.js');?>"></script>-->
     <script src="<?php echo base_url('assets/js/publicity.js');?>"></script>
 </body>
 </html>

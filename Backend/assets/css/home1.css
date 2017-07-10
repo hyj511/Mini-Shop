@@ -159,11 +159,11 @@
     margin-left: 20px;
 }
 #product_thumb {
-    width: 100px;
+    width: 200px;
 }
 .product_thumb_content {
     /*width: 100px;*/
-    height: 100px;
+    height: 200px;
     float: left;
     background-color: grey
 }

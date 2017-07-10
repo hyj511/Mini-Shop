@@ -10,7 +10,8 @@ class Product extends CI_Controller {
     /* constructor */
 	public function __construct()
 	{
-		parent::__construct();			
+		parent::__construct();	
+
 		$this->load->model('product_model');
 		$this->load->model('file_model');
 		$this->load->model('order_model');

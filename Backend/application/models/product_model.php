@@ -68,6 +68,54 @@ class Product_model extends CI_Model {
         return $result = $query->result_array();
 	}
 
+	/* get  records by multi condition */
+	public function getProductList($product_ids = 999999, $shop_ids = 999999) {
+
+		$str = "SELECT * FROM products";
+
+		if(count($product_ids) != 0){
+			if(count($product_ids) > 1){
+				$product_ids = implode(",", $product_ids);
+				$str .= " WHERE id IN (" . $product_ids . ")";
+			} else {
+				$str .= " WHERE id=" . $product_ids[0];
+			}
+		} else {
+			$str .= " WHERE id=99999999";
+		}
+
+		if(count($shop_ids) != 0){
+			if(count($shop_ids)>1){
+				$shop_ids = implode(",", $shop_ids);
+				$str .= " AND shopid IN (" . $shop_ids . ")";
+			} else {
+				$str .= " AND shopid=" . $shop_ids[0];
+			}
+		} else {
+			$str .= " AND shopid=99999999";			
+		}
+
+		// if($buyer_name != ''){
+		// 	$str .= " AND buyer_name LIKE " . "'%" . $buyer_name . "%'";
+		// } 
+
+		// if($buyer_phone != ''){
+		// 	$str .= " AND buyer_phone LIKE " . "'%" . $buyer_phone . "%'";
+		// } 
+
+		// if($delivery_type != ''){
+		// 	$str .= " AND delivery_type=" . $delivery_type;
+		// } 
+		
+		// if($buy_type != ''){
+		// 	$str .= " AND buy_type=" . $buy_type;
+		// } 
+		
+		$str .= ";";
+		$query = $this->db->query($str);
+		return $query->result_array();
+	} 
+
 	/**************************/
 	/*  Category Model        *
 	/**************************/

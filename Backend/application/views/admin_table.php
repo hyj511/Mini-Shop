@@ -15,11 +15,11 @@
                     <input type="hidden" id="admin_id">
                     <div class="form-group">
                         <label>名称:</label>
-                        <input type="text" class="form-control" placeholder="Enter Name" id="admin_name" required>
+                        <input type="text" class="form-control" placeholder="" id="admin_name" required>
                     </div>
                     <div class="form-group">
                         <label>邮件:</label>
-                        <input type="email" class="form-control" placeholder="Enter email" id="admin_email" required>
+                        <input type="email" class="form-control" placeholder="" id="admin_email" required>
                     </div>   
                     <div class="form-group">
                         <label>门店:</label>
@@ -39,8 +39,8 @@
                             <?php }?>
                         </select>
                     </div>                 
-                    <button type="button" id="save_admin" class="btn btn-default">Save</button>
-                    <button type="button" id="close_admin" class="btn btn-default" style="float:right;">Close</button>
+                    <button type="button" id="save_admin" class="btn btn-success">保存</button>
+                    <button type="button" id="close_admin" class="btn btn-danger" style="float:right;">关闭</button>
                 </form>
             </div>
         </div>
@@ -55,23 +55,23 @@
     <table id="admin_list" class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>No</th>
-                <th>名称</th>
-                <th>邮件</th>
-                <th>门店</th>
-                <th>权限</th>
-                <th></th>                             
+                <th class="text-center">No</th>
+                <th class="text-center">名称</th>
+                <th class="text-center">邮件</th>
+                <th class="text-center">门店</th>
+                <th class="text-center">权限</th>
+                <th class="text-left">编辑 / 删除</th>                             
             </tr>
         </thead>
         <tbody>
             <?php foreach($admin_list as $key => $value) { ?>
             <tr>
-                <td><?php echo $key + 1; ?></td>
-                <td><?php echo $value['admin_name']; ?></td>
-                <td><?php echo $value['admin_email']; ?></td> 
-                <td><?php echo $value['shop']; ?></td>   
-                <td><?php echo $value['admin_role']; ?></td>     
-                <td>
+                <td class="text-center"><?php echo $key + 1; ?></td>
+                <td class="text-center"><?php echo $value['admin_name']; ?></td>
+                <td class="text-center"><?php echo $value['admin_email']; ?></td> 
+                <td class="text-center"><?php echo $value['shop']; ?></td>   
+                <td class="text-center"><?php echo $value['admin_role']; ?></td>     
+                <td class="text-left">
                     <i class="fa fa-pencil edit-admin" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>
                     <i class="fa fa-trash-o delete-admin" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>
                 </td>                          

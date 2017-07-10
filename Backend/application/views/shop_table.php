@@ -15,18 +15,22 @@
                     <input type="hidden" id="shop_id">
                     <div class="form-group">
                         <label>名称:</label>
-                        <input type="text" class="form-control"placeholder="Enter Shop Name" id="shop_name" required>
+                        <input type="text" class="form-control"placeholder="" id="shop_name" required>
                     </div>
                     <div class="form-group">
                         <label>地址:</label>
-                        <input type="text" class="form-control" placeholder="Enter Shop Address" id="shop_address" required>
+                        <input type="text" class="form-control" placeholder="" id="shop_address" required>
                     </div> 
                     <div class="form-group">
+                        <label>位置:</label>
+                        <input type="text" class="form-control" placeholder="" id="shop_location" required>
+                    </div>
+                    <div class="form-group">
                         <label>联系电话:</label>
-                        <input type="text" class="form-control" placeholder="Enter Shop Phone Number" id="shop_phone" required>
+                        <input type="text" class="form-control" placeholder="" id="shop_phone" required>
                     </div>                    
-                    <button type="button" id="save_shop" class="btn btn-default">Save</button>
-                    <button type="button" id="close_shop" class="btn btn-default" style="float:right;">Close</button>
+                    <button type="button" id="save_shop" class="btn btn-success">保存</button>
+                    <button type="button" id="close_shop" class="btn btn-danger" style="float:right;">关闭</button>
                 </form>
             </div>
         </div>
@@ -41,20 +45,22 @@
     <table id="shop_list" class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>No</th>
-                <th>名称</th>
-                <th>地址</th>
-                <th>联系电话</th>
-                <th></th>                             
+                <th class="text-center">No</th>
+                <th class="text-center">名称</th>
+                <th class="text-center">地址</th>
+                <th class="text-center">位置</th>
+                <th class="text-center">联系电话</th>
+                <th>编辑 / 删除</th>                             
             </tr>
         </thead>
         <tbody>
             <?php foreach($shop_list as $key => $value) { ?>
             <tr>
-                <td><?php echo $key + 1; ?></td>
-                <td><?php echo $value['shop_name']; ?></td>
-                <td><?php echo $value['shop_address']; ?></td> 
-                <td><?php echo $value['shop_phone']; ?></td>     
+                <td class="text-center"><?php echo $key + 1; ?></td>
+                <td class="text-center"><?php echo $value['shop_name']; ?></td>
+                <td class="text-center"><?php echo $value['shop_address']; ?></td> 
+                <td class="text-center"><?php echo $value['shop_location']; ?></td>
+                <td class="text-center"><?php echo $value['shop_phone']; ?></td>     
                 <td>
                     <i class="fa fa-pencil edit-shop" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>
                     <i class="fa fa-trash-o delete-shop" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>

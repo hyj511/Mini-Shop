@@ -73,7 +73,8 @@
                     </ul>
 		        </li>
                 <li id="nav_order"><a href="<?php echo base_url('order/getOrderList');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                <li id="nav_order"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宣传管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li id="nav_order"><a href="<?php echo base_url('publicity');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宣传管理<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li id="nav_order"><a href="<?php echo base_url('statistic');?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据统计<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
             </ul>
         </div>
             

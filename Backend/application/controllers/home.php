@@ -9,11 +9,11 @@ class Home extends CI_Controller {
 
 	protected $logged;
     protected $role;
-
 	/* constructor */
 	public function __construct()
 	{
 		parent::__construct();
+
 		$this->logged = $this->session->userdata('loggedin');
 		$this->role = $this->session->userdata('admin_role');		
 		

@@ -150,7 +150,8 @@ $(document).ready(function() {
             shop_id: $('#shop_id').val(),
             shop_name: $('#shop_name').val(),
             shop_address: $('#shop_address').val(),
-            shop_phone: $('#shop_phone').val()
+            shop_phone: $('#shop_phone').val(),
+            shop_location: $('#shop_location').val()
         }; 
         var url = base_url;
         if(update_shop_flag == true){
@@ -198,6 +199,7 @@ $(document).ready(function() {
                     $('#shop_address').val(result.shop_address);  
                     $('#shop_phone').val(result.shop_phone); 
                     $('#shop_id').val(result.id); 
+                    $('#shop_location').val(result.shop_location);
                     update_shop_flag = true;            
                 }
             },
@@ -237,6 +239,22 @@ $(document).ready(function() {
 
     $('#add_product').click(function() {
         $('#product_modal').modal('show');
+        // initialize
+        $('#product_id').val('');
+        $('#product_name').val('');
+        $('#product_description').val(''); 
+        $('#category').val('');
+        $('#classification').val('');
+        $('#origin_price').val('');
+        $('#promotion_price').val('');
+        $('#inventory').val('');   
+        $('#express_fee').val('');
+        $('#group_id').val('');
+        $('#group_num').val('');
+        $('#group_price').val('');
+        $('#group_time').val('');
+        $("#product_thumb").attr("src", '');
+        $('#product_cover_container').empty();
     });
 
     $('#close_product').click(function() {
@@ -372,6 +390,7 @@ $(document).ready(function() {
         $('#group_num').val('');
         $('#group_price').val('');
         $('#group_time').val('');
+        $("#product_thumb").attr("src", '');
         $('#product_cover_container').empty();
 
         var product_id =  $(this).data("id");
@@ -825,6 +844,7 @@ $(window).on('load', function () {
             // If the count down is finished, write some text 
             if (distance < 0) {
                 clearInterval(timecount);
+                dom.html("");
                 //document.getElementsByClassName("test_time").innerHTML = "EXPIRED";
             }
         }

@@ -141,23 +141,24 @@
             <div class="col-md-2">
                 <p>订单状态
                     <select class="form-control" name="buy_type">
-                        <option value=""></option>
-                        <option value="1">立即购买</option> 
-                        <option value="2">拼团</option>   
+                        <option value="" <?php if($search_buy_type == '') echo 'selected'; ?>></option>
+                        <option value="1" <?php if($search_buy_type == 1) echo 'selected'; ?>>立即购买</option> 
+                        <option value="2" <?php if($search_buy_type == 2) echo 'selected'; ?>>拼团</option>   
                     </select>
                 </p>
             </div>
             <div class="col-md-2">
                 <p>支付状态
                     <select class="form-control" name="order_state">
-                        <option value="0">未支付</option> 
-                        <option value="1">拼团中</option>  
-                        <option value="2">拼团失败</option> 
-                        <option value="3">拼团成功</option>                        
-                        <option value="6">已完结</option> 
-                        <option value="7">申请退款</option>
-                        <option value="8">退款处理中</option> 
-                        <option value="9">退款完成</option>
+                        <option value="" <?php if($search_order_state == '') echo 'selected'; ?>></option>
+                        <option value="1" <?php if($search_order_state == 1) echo 'selected'; ?>>未支付</option> 
+                        <option value="2" <?php if($search_order_state == 2) echo 'selected'; ?>>拼团中</option>  
+                        <option value="3" <?php if($search_order_state == 3) echo 'selected'; ?>>拼团失败</option> 
+                        <option value="4" <?php if($search_order_state == 4) echo 'selected'; ?>>拼团成功</option>                        
+                        <option value="5" <?php if($search_order_state == 5) echo 'selected'; ?>>已完结</option> 
+                        <option value="6" <?php if($search_order_state == 6) echo 'selected'; ?>>申请退款</option>
+                        <option value="7" <?php if($search_order_state == 7) echo 'selected'; ?>>退款处理中</option> 
+                        <option value="8" <?php if($search_order_state == 8) echo 'selected'; ?>>退款完成</option>
                     </select>
                 </p>
             </div>
@@ -173,24 +174,24 @@
             <div id="thead_wrapper">            
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>订单号</th>
-                    <th>商品名称</th>
-                    <th>数量</th>
+                    <th class="text-center">No</th>
+                    <th class="text-center">订单号</th>
+                    <th class="text-center">商品名称</th>
+                    <th class="text-center">数量</th>
                     <th class="text-center">门店</th>
                     <th class="text-center">姓名</th>
                     <th class="text-center">手机号</th>
                     <th class="text-center">地址</th>
-                    <th>渠道</th>
+                    <th class="text-center">渠道</th>
                     <th class="text-center">拼团人数</th>
-                    <th>倒计时</th>   
+                    <th class="text-center">倒计时</th>   
                     <!--<th>拼团价</th>-->
-                    <th>订单状态</th>
-                    <th>支付状态</th>                    
+                    <th class="text-center">订单状态</th>
+                    <th class="text-center">支付状态</th>                    
                     <th class="text-right">支付金额</th>
                     <th class="text-right">发货快递单号</th>
                     <th class="text-center">订单时间</th>
-                    <th>
+                    <th class="text-center">
                         <!--<i></i><i></i><i>&nbsp;</i>-->
                         <!--<i class="fa fa-file-excel-o" aria-hidden="true" id="out_xls"></i>-->
                         <button id="out_xls" class="btn btn-danger">导出 Excel</button>
@@ -201,27 +202,27 @@
             <tbody>
                 <?php foreach($order_list as $key => $value) { ?>
                 <tr>
-                    <td><?php echo $key + 1; ?></td>
-                    <td><?php echo $value['order_number']; ?></td>
-                    <td><?php echo $value['product_id']; ?></td>
-                    <td><?php echo $value['order_amount']; ?></td> 
+                    <td class="text-center"><?php echo $key + 1; ?></td>
+                    <td class="text-center"><?php echo $value['order_number']; ?></td>
+                    <td class="text-center"><?php echo $value['product_id']; ?></td>
+                    <td class="text-center"><?php echo $value['order_amount']; ?></td> 
                     <td class="text-center"><?php echo $value['shop_name']; ?></td>              
                     <td class="text-center"><?php echo $value['buyer_name']; ?></td>  
                     <td class="text-center"><?php echo $value['buyer_phone']; ?></td>
                     <td class="text-center"><?php echo $value['buyer_address']; ?></td>
-                    <td><?php echo $value['delivery_type']; ?></td>
+                    <td class="text-center"><?php echo $value['delivery_type']; ?></td>
                     <td class="text-center"><?php echo $value['groupCount']; ?></td>
                     <td class="group-remain" data-id="<?php echo $value['id']; ?>"></td>
                     <!--<td></td>-->
-                    <td><?php echo $value['buy_type']; ?></td>
-                    <td><?php echo $value['pay_state']; ?></td>                    
+                    <td class="text-center"><?php echo $value['buy_type']; ?></td>
+                    <td class="text-center"><?php echo $value['pay_state']; ?></td>                    
                     <td class="text-right"><?php echo $value['pay_amount']; ?></td> 
                     <td class="text-right"><?php echo $value['expressNum']; ?></td>  
                     <td class="text-center"><?php echo $value['orderTime']; ?></td>
-                    <td>
+                    <td class="text-center">
                         <button type="" class="btn btn-success">已发货</button>
-                        <i class="fa fa-pencil edit-order" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>
-                        <i class="fa fa-trash-o delete-order" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>
+                        <!--<i class="fa fa-pencil edit-order" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>
+                        <i class="fa fa-trash-o delete-order" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>-->
                         <!--<i class="fa fa-file-excel-o record-excel" aria-hidden="true"></i>-->
                     </td>                          
                 </tr>

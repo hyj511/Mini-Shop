@@ -55,8 +55,19 @@ class Order_model extends CI_Model {
         return $result = $query->result_array();
 	}
 
+	/* get a record by product_id */
+	public function getOrderByProductAndDelivery($id, $delivery_type) {
+		$this->db->where('product_id', $id);
+		if($delivery_type != 0) {
+			$this->db->where('delivery_type', $delivery_type);
+		}		
+        $this->db->from('orders');
+        $query = $this->db->get();
+        return $result = $query->result_array();
+	}
+
 	/* get  records by multi condition */
-	public function getOrderList($product_ids = 999999, $shop_ids = 999999, $buyer_name = 999999, $buyer_phone = 999999, $delivery_type = 9, $buy_type = 9) {
+	public function getOrderList($product_ids = 999999, $shop_ids = 999999, $buyer_name = 999999, $buyer_phone = 999999, $delivery_type = 9, $buy_type = 9, $order_state = 99) {
 
 		$str = "SELECT * FROM orders";
 
@@ -96,6 +107,10 @@ class Order_model extends CI_Model {
 		
 		if($buy_type != ''){
 			$str .= " AND buy_type=" . $buy_type;
+		} 
+
+		if($order_state != ''){
+			$str .= " AND pay_state=" . $order_state;
 		} 
 		
 		$str .= ";";

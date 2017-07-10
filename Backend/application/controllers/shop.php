@@ -28,10 +28,12 @@ class Shop extends CI_Controller {
 		$shop_name = $this->input->post('shop_name');
 		$shop_address = $this->input->post('shop_address');
 		$shop_phone = $this->input->post('shop_phone');
+		$shop_location = $this->input->post('shop_location');
 		$data = array(
 			'shop_name' => $shop_name, 
 			'shop_address' => $shop_address,
-			'shop_phone' => $shop_phone
+			'shop_phone' => $shop_phone,
+			'shop_location' => $shop_location
 		);
 		$result = $this->shop_model->add($data);
 		echo json_encode($result);
@@ -60,10 +62,12 @@ class Shop extends CI_Controller {
 		$shop_name = $this->input->post('shop_name');
 		$shop_address = $this->input->post('shop_address');
 		$shop_phone = $this->input->post('shop_phone');
+		$shop_location = $this->input->post('shop_location');
 		$data = array(
 			'shop_name' => $shop_name, 
 			'shop_address' => $shop_address,
-			'shop_phone' => $shop_phone
+			'shop_phone' => $shop_phone,
+			'shop_location' => $shop_location
 		);
 		$result = $this->shop_model->update($shop_id, $data);
 		echo json_encode($result);

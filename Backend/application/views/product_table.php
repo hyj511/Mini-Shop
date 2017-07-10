@@ -38,12 +38,12 @@
                             <!--<input class="input-md textinput textInput form-control" id="category" style="margin-bottom: 10px" type="text" />-->
                         </div>
                     </div>
-                    <div class="form-group required">
+                    <!--<div class="form-group required">
                         <label class="control-label col-md-4  requiredField"> Classification</label>
                         <div class="controls col-md-8 ">
                             <input class="input-md textinput textInput form-control" id="classification" style="margin-bottom: 10px" type="text" />
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group required"> 
                         <label class="control-label col-md-4  requiredField">原价</label> 
                         <div class="controls col-md-8 "> 
@@ -58,12 +58,12 @@
                                 <label class="radio-inline"> <input type="radio" name="gender" id="id_gender_2" value="F"  style="margin-bottom: 10px">Female </label>
                         </div>
                     </div> -->
-                    <div class="form-group required"> 
+                    <!--<div class="form-group required"> 
                         <label class="control-label col-md-4  requiredField">  Promotion Price</label>
                         <div class="controls col-md-8 "> 
                             <input class="input-md textinput textInput form-control" id="promotion_price" style="margin-bottom: 10px" type="text" />
                         </div>
-                    </div> 
+                    </div> -->
                     <div class="form-group required">
                         <label class="control-label col-md-4  requiredField">库存</label>
                         <div class="controls col-md-8 "> 
@@ -100,7 +100,7 @@
                             <div class="product_thumb_content">
                                 <img src="" id="product_thumb" class="img-responsive">
                             </div>                          
-                            <input class="input-md textinput textInput form-control" id="product_image" style="margin-bottom: 10px" type="file"/>
+                            <input class="input-md textinput textInput form-control" id="product_image" style="margin-bottom: 10px" type="file">
                         </div> 
                     </div>  
                     <!--<div class="form-group required">                        
@@ -112,52 +112,52 @@
                             <input class="input-md textinput textInput form-control" id="product_cover" style="margin-bottom: 10px" type="file" multiple>
                         </div> 
                     </div>  -->
-                    <button type="button" id="save_product" class="btn btn-default">Save</button>
-                    <button type="button" id="close_product" class="btn btn-default" style="float:right;">Close</button>
+                    <button type="button" id="save_product" class="btn btn-success">保 存</button>
+                    <button type="button" id="close_product" class="btn btn-danger" style="float:right;">关 闭</button>
                 </form>
            </div>
         </div>
     </div>    
 </div> 
 
-<div class="text-right" style="margin-top: 20px;">
-    <button class="btn btn-primary" id="add_product">新建商品</button>
+<div class="text-right" style="margin:30px;">
+    <button class="btn btn-primary" id="add_product">新 建 商 品</button>
 </div> 
 
 <div class="table-responsive">          
     <table id="product_list" class="table table-hover table-striped">
         <thead>
             <tr>
-                <th class="text-right">No</th>
+                <th class="text-center">No</th>
                 <th class="text-center">名称</th>
                 <th class="text-center">介绍</th>
                 <th class="text-center">分类</th>
                 <!--<th class="text-center">Classification</th>-->
-                <th class="text-right">原价</th>
+                <th class="text-center">原价</th>
                 <!--<th class="text-right">Promotion Price</th>-->
-                <th class="text-right">库存</th>
-                <th class="text-right">运费</th>
-                <th class="text-right">拼团人数</th>
-                <th class="text-right">拼团价</th>
-                <th class="text-right">倒计时周期</th>
-                <th></th>                             
+                <th class="text-center">库存</th>
+                <th class="text-center">运费</th>
+                <th class="text-center">拼团人数</th>
+                <th class="text-center">拼团价</th>
+                <th class="text-center">倒计时周期</th>
+                <th>编辑 / 删除</th>                             
             </tr>
         </thead>
         <tbody>
             <?php foreach($product_list as $key => $value) { ?>
             <tr>
-                <td class="text-right"><?php echo $key + 1; ?></td>
+                <td class="text-center"><?php echo $key + 1; ?></td>
                 <td class="text-center"><?php echo $value['name']; ?></td>
-                <td class="text-center"><?php echo $value['description']; ?></td>  
+                <td class="text-center"><a><?php echo $value['description']; ?></a></td>  
                 <td class="text-center"><?php echo $value['category']; ?></td>    
                 <!--<td class="text-center"><?php echo $value['classification']; ?></td>-->
-                <td class="text-right"><?php echo $value['originPrice']; ?></td>    
+                <td class="text-center"><?php echo $value['originPrice']; ?></td>    
                 <!--<td class="text-right"><?php echo $value['promotionPrice']; ?></td>    -->
-                <td class="text-right"><?php echo $value['inventory']; ?></td>    
-                <td class="text-right"><?php echo $value['expressFee']; ?></td>  
-                <td class="text-right"><?php echo $value['group_number']; ?></td>    
-                <td class="text-right"><?php echo $value['group_price']; ?></td>    
-                <td class="text-right"><?php echo $value['group_time']; ?></td>         
+                <td class="text-center"><?php echo $value['inventory']; ?></td>    
+                <td class="text-center"><?php echo $value['expressFee']; ?></td>  
+                <td class="text-center"><?php echo $value['group_number']; ?></td>    
+                <td class="text-center"><?php echo $value['group_price']; ?></td>    
+                <td class="text-center"><?php echo $value['group_time']; ?></td>         
                 <td style="width:10%">
                     <i class="fa fa-pencil edit-product" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>
                     <i class="fa fa-trash-o delete-product" aria-hidden="true" data-id="<?php echo $value['id']; ?>"></i>

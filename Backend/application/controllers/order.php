@@ -95,6 +95,7 @@ class Order extends CI_Controller {
 		$buyer_phone = $this->input->post('buyer_phone');
 		$delivery_type = $this->input->post('delivery_type');
 		$buy_type = $this->input->post('buy_type');
+		$order_state = $this->input->post('order_state');
 
 		// search box
 		$data = array();		
@@ -111,7 +112,7 @@ class Order extends CI_Controller {
 			array_push($shop_ids, $value['id']);
 		}
 
-		$order_list = $this->order_model->getOrderList($product_ids, $shop_ids, $buyer_name, $buyer_phone, $delivery_type, $buy_type);
+		$order_list = $this->order_model->getOrderList($product_ids, $shop_ids, $buyer_name, $buyer_phone, $delivery_type, $buy_type, $order_state);
 		
 		foreach($order_list as $key=>$value){
 				$product = $this->product_model->getProductById($value['product_id']);
@@ -142,10 +143,14 @@ class Order extends CI_Controller {
 				}	
 				// pay state
 				switch($order_list[$key]['pay_state']){
-					case 0: $order_list[$key]['pay_state'] = '未支付'; break;
-					case 1: $order_list[$key]['pay_state'] = '拼团中'; break;
-					case 2: $order_list[$key]['pay_state'] = '拼团失败'; break;
-					case 3: $order_list[$key]['pay_state'] = '拼团成功'; break;					
+					case 1: $order_list[$key]['pay_state'] = '未支付'; break;
+					case 2: $order_list[$key]['pay_state'] = '拼团中'; break;
+					case 3: $order_list[$key]['pay_state'] = '拼团失败'; break;
+					case 4: $order_list[$key]['pay_state'] = '拼团成功'; break;	
+					case 5: $order_list[$key]['pay_state'] = '已完结'; break;
+					case 6: $order_list[$key]['pay_state'] = '申请退款'; break;
+					case 7: $order_list[$key]['pay_state'] = '退款处理中'; break;
+					case 8: $order_list[$key]['pay_state'] = '退款完成'; break;					
 				}
 				// group count	
 				if($value['group_id'] != null){
@@ -163,6 +168,8 @@ class Order extends CI_Controller {
 			$data['serch_buyer_name'] = $buyer_name;
 			$data['serch_buyer_phone'] = $buyer_phone;
 			$data['search_delivery_type'] = $delivery_type;
+			$data['search_buy_type'] = $buy_type;
+			$data['search_order_state'] = $order_state;
 
 			$data['order_list'] = $order_list;			
 			$this->load->view('order', $data);
