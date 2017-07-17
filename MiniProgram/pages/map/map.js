@@ -31,7 +31,9 @@ Page({
         height: 50
       },
       clickable: true
-    }]
+    }],
+    pointLatitude: 0.0,
+    pointLongitude: 0.0,
   },
   regionchange(e) {
     console.log(e.type)

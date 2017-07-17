@@ -1,6 +1,10 @@
 <!--pages/user/user.wxml-->
 <view class="user">
   <image class="header-img" src="../../images/tabuser.png"></image>
+  <view class="profile-area">
+    <image class="profile-img" src="{{myImage}}"></image>
+    <view class="profile-name">{{myName}}</view>
+  </view>
   <view id="store" class="list-item" bindtap="goStorePage">
     <image class="list-img" src="../../images/store.png"></image>
     <text class="list-name">门店自提订单</text>

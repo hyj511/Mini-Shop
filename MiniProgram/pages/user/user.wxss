@@ -43,3 +43,14 @@
 #customer {
   margin-top: 15px;
 }
+
+.profile-area {
+  text-align: center;
+  margin-top:-150px;
+  margin-bottom:30px;
+}
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}

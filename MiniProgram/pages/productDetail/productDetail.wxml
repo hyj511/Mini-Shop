@@ -5,7 +5,7 @@
     <swiper indicator-color="Rgba(100,100,100,0.5)" indicator-active-color="#fff" class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
       <block wx:for="{{swiperImages}}" wx:for-item="beforeImage">
         <swiper-item>
-          <image class="swiper-img" src="{{beforeImage.imgUrl}}"></image>
+          <image class="swiper-img" src="{{beforeImage}}"></image>
         </swiper-item>
       </block>
     </swiper>
@@ -13,18 +13,18 @@
   <view class="commodity-area">
     <view class="commodity-info">
       <view class="description">
-        奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装
+        {{productDetails.name}}
       </view>
       <view class="prices">
-        <text class="price1">¥{{productDetailPrices[0].originPrice}}</text>
-        <text class="price2">拼团价: ¥{{productDetailPrices[0].groupPrice}}</text>
+        <text class="price1">¥{{productDetails.price}}</text>
+        <text class="price2">拼团价: ¥{{productDetails.gb_price}}</text>
       </view>
     </view>
   </view>
   <view class="info-area">
     <view class="item">
       <text class="left">快递运费:
-        <text style="color: #db5078; font-weight:600;">¥{{productDetailPrices[0].expressFee}}</text>
+        <text style="color: #db5078; font-weight:600;">¥{{productDetails.price_deliver}}</text>
       </text>
       <text class="right" style="min-width:60px;">库存: </text>
     </view>
@@ -45,9 +45,9 @@
       </view>
       <view class="item">
         <view class="left">
-          <text class="price2">拼团价: ¥59.00</text>
+          <text class="price2">拼团价: ¥{{productDetails.gb_price}}</text>
         </view>
-        <view class="left rule">规则: 24小时内2人参与拼团即成功</view>
+        <view class="left rule">规则: {{productDetails.gb_timeout}}小时内{{productDetails.gb_count}}人参与拼团即成功</view>
       </view>
     </view>
     <view class="user-area">
@@ -94,17 +94,17 @@
       </view>
       <view class="product-info">
         <view class="product-description">
-          奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装
+          {{productDetails.name}}
         </view>
         <view class="price">
-          <text class="price1">¥489</text>
+          <text class="price1">¥{{productDetails.price}}</text>
           <view class="groupBuying" hidden="{{groupBuyingHidden}}">
             拼团
           </view>
         </view>
         <view class="remain">
           库存
-          <text style="color:#333">13540</text>件
+          <text style="color:#333">{{productDetails.remain}}</text>件
         </view>
       </view>
     </view>

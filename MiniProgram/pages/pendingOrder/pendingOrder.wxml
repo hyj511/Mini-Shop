@@ -2,15 +2,15 @@
 <view class="pending-item">
   <view class="commodity-item">
     <view class="commodity-image">
-      <image src="../../images/commodity-1.png"></image>
+      <image src="{{thumbnail}}"></image>
     </view>
     <view class="commodity-info">
       <view class="commodity-description">
-        奶油味夏威夷果 奶油口味特产干货干果 坚果零食小吃袋装
+        {{productDetails.name}}
       </view>
       <view class="price">
-        <view class="left">×1</view>
-        <view class="right">¥69.00</view>
+        <view class="left">×{{buyCnt}}</view>
+        <view class="right">¥{{productDetails.price}}</view>
       </view>
       <view class="remain">
         <view class="left">
@@ -31,17 +31,50 @@
       <button class="button appbutton4 {{storeActive}}" bindtap="selectStore">门店自提</button>
     </view>
   </view>
-  <view class="address-area">
+  <view class="address-area" hidden="{{storeHidden}}">
     <view class="left">
       <view class="name">收货人:
-        <text style="margin-left: 10px">王小萌</text>
-        <text style="margin-left: 10px">15126489546</text>
+        <text style="margin-left: 10px">{{username}}</text>
+        <text style="margin-left: 10px">{{phone}}</text>
       </view>
-      <view class="address">北京市 朝阳区 10021</view>
-      <view class="store">朝阳区 北京工业大学东门</view>
+      <view class="address">{{area}} {{zipcode}}</view>
+      <view class="store">{{address}}</view>
     </view>
     <view class="right">
       <button class="button appbutton3" bindtap="editAddress">编辑</button>
+    </view>
+  </view>
+  <view class="storeAddress" hidden="{{!storeHidden}}">
+    <view class="list-area">
+      <view class="item">
+        姓名: 王小萌
+      </view>
+      <view class="item">
+        联系电话: 13041096933
+      </view>
+    </view>
+    <view class="select-area">
+      <scroll-view scroll-y style="height: 270px;">
+        <radio-group class="group" bindchange="radioChange">
+          <view class="radio-item" wx:for="{{storeList}}" wx:for-item="store">
+            <radio id="{{store.id}}" hidden value="{{store.id}}" checked="{{store.checked}}"></radio>
+            <view class="radio-icon">
+              <view class="radio-icon-checked" style="opacity:{{store.checked ? 1: 0}}"></view>
+            </view>
+            <label class="radio-text" for="{{store.id}}">
+              <view class="left">
+                <view class="name">{{store.name}}</view>
+                <view class="address">门店地址: {{store.address}}</view>
+                <view class="phone">联系电话: {{store.phone}}</view>
+              </view>
+              <view class="right" data-id="{{store.id}}" bindtap="goMap">
+                <view class="distance">距您 {{store.distance}}M</view>
+                <view class="marker"><image src="../../images/marker.png"></image></view>
+              </view>
+            </label>
+          </view>
+        </radio-group>
+      </scroll-view>
     </view>
   </view>
   <view class="detail-area">
@@ -58,7 +91,7 @@
         快递运费:
       </view>
       <view class="right">
-        ¥0.00
+        ¥{{productDetails.price_deliver}}
       </view>
     </view>
     <view class="item">
@@ -66,7 +99,7 @@
         价格合计:
       </view>
       <view class="right">
-        <text style="color:#db5078">¥69.00</text>
+        <text style="color:#db5078">¥{{priceSum}}</text>
       </view>
     </view>
     <view class="item">
@@ -79,7 +112,7 @@
     </view>
   </view>
   <view class="button-area">
-    <view class="total">总计: ¥69.00</view>
+    <view class="total">总计: ¥{{totalPrice}}</view>
     <button class="button appbutton2" bindtap="submitOrder">
         提交订单
     </button>

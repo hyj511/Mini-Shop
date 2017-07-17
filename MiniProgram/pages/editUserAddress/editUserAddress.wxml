@@ -2,14 +2,14 @@
 <view class="userAddress">
   <view class="list-area">
     <view class="item">
-      姓名: <input  bindinput="userName" value="{{user.name}}" placeholder="王小萌"/>
+      姓名: <input  bindinput="userName" value="{{name}}" placeholder="王小萌"/>
     </view>
     <view class="item">
-      联系电话: <input type="digit"  bindinput="userPhone" value="{{user.phone}}" placeholder="13041096933"/>
+      联系电话: <input type="digit"  bindinput="userPhone" value="{{phone}}" placeholder="13041096933"/>
     </view>
     <view class="item">
       <view class="left">
-        收货地区: <input  bindinput="userArea" value="{{user.area}}" placeholder="北京市 朝阳区"/>
+        收货地区: <input  bindinput="userArea" value="{{area}}" placeholder="北京市 朝阳区"/>
       </view>
       <view class="right position" bindtap="goMap">
         <view class="marker"><image src="../../images/marker.png"></image></view>
@@ -17,10 +17,10 @@
       </view>
     </view>
     <view class="item">
-      详细地址: <input  bindinput="userAddress" value="{{user.address}}" placeholder="北京工业大学东门"/>
+      详细地址: <input  bindinput="userAddress" value="{{address}}" placeholder="北京工业大学东门"/>
     </view>
     <view class="item">
-      邮政编码: <input type="digit"  bindinput="userZipcode" value="{{user.zipcode}}" placeholder="100124"/>
+      邮政编码: <input type="digit"  bindinput="userZipcode" value="{{zipcode}}" placeholder="100124"/>
     </view>
   </view>
   <view class="button-area">

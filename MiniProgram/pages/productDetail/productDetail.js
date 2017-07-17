@@ -28,7 +28,7 @@ Page({
 
     // loading提示语
     loadingMessage: '',
-    productDetailPrices: [],
+    productDetails: [],
     
   },
   /*
@@ -108,6 +108,7 @@ Page({
       commodityCount: 0,
     });
     util.groupBuyMode = false;
+
   },
   /*
     Called when user click 发起拼团
@@ -148,6 +149,17 @@ Page({
         url: '../pendingOrder/pendingOrder'
       });
     }
+
+    util.buyCnt = this.data.commodityCount;
+    util.productDetails = this.data.productDetails;
+    util.priceSum = this.data.commodityCount * this.data.productDetails.price;
+    var priceDeliver = this.data.productDetails.price_deliver;
+    util.totalPrice = parseFloat(util.priceSum) + parseFloat(priceDeliver);
+    console.log('go buy now -->');
+    console.log(this.data.commodityCount);
+    console.log(this.data.productDetails.price);
+    console.log(util.totalPrice);
+    console.log('<---');
   },
   hideLoading() {
     this.setData({ showLoading: false, loadingMessage: '' });
@@ -157,42 +169,55 @@ Page({
 */
   onLoad: function () {
     console.log('onLoad')
-    // send the product id to backend
-    /*this.setData({
-      swiperImages: util.beforeProductImgs
-    })*/
+ 
     // get the categorylist from backend-server
-    this.getProductbeforImages();
+    //this.getProductbeforImages();
     this.getProductInfo();
     
-    /*var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        //userInfo:userInfo
-      })
-    })
-    */
   },
-    getProductInfo: function () {//read the category list
+
+  //read the category list
+    getProductInfo: function () {
       var that = this;   // 这个地方非常重要，重置data{}里数据时候setData方法的this应为以及函数的this, 如果在下方的sucess直接写this就变成了wx.request()的this了
+      var productUrl = 'https://hly.weifengkeji.top/public/api/v1/product/detail/' + util.productId
       wx.request({
-        url: 'https://hly.weifengkeji.top/index.php/product/detail',//请求地址
+        url: productUrl,//请求地址
         data: {
-          product_id: util.productId
+          
         },
         header: {//请求头
-          'content-type': 'application/x-www-form-urlencoded'
+          "Content-Type": "applciation/json"
         },
-        method: "POST",//get为默认方法/POST
+        method: "GET",//get为默认方法/POST
         success: function (res) {
-          console.log('product prices');
-          console.log(res.data);//res.data相当于ajax里面的data,为后台返回的数据
+          console.log('product informations');
+          console.log(res.data.result);//res.data相当于ajax里面的data,为后台返回的数据
           that.setData({//如果在sucess直接写this就变成了wx.request()的this了.必须为getdata函数的this,不然无法重置调用函数
-            productDetailPrices: res.data
+            productDetails: res.data.result
           })
 
+          //get the swiper images
+          app.globalData.cnt = 0;
+          for (let i = 0; i < res.data.result.images.length; i++) {
+            console.log(res.data.result.images[i]);
+
+            wx.downloadFile({
+              url: res.data.result.images[i], //仅为示例，并非真实的资源
+              type: 'image',
+              success: function (res) {
+                that.makeImageUrls(app.globalData.cnt, res.tempFilePath);
+
+                app.globalData.cnt++;
+              }
+            });
+          }
+
+          that.setData({//如果在sucess直接写this就变成了wx.request()的this了.必须为getdata函数的this,不然无法重置调用函数
+            swiperImages: res.data.result.images
+          })
+          
+          console.log('productdetail->swiperimages')
+          console.log(that.data.swiperImages)
         },
         fail: function (err) { },//请求失败
         complete: function () { }//请求完成后执行的函数
@@ -202,55 +227,11 @@ Page({
     makeImageUrls: function (i, imgUrl) {
       console.log(imgUrl);
       
-        this.data.swiperImages[i].imgUrl = imgUrl;
+        this.data.swiperImages[i] = imgUrl;
         console.log("each product images");
-        console.log(this.data.swiperImages[i].imgUrl);
+        console.log(this.data.swiperImages[i]);
       
 
     },
-    getProductbeforImages: function () {//read the category list
-      var that = this;   // 这个地方非常重要，重置data{}里数据时候setData方法的this应为以及函数的this, 如果在下方的sucess直接写this就变成了wx.request()的this了
-      wx.request({
-        url: 'https://hly.weifengkeji.top/index.php/product/getimgs',//请求地址
-        data: {
-          product_id: util.productId
-      
-        },
-        header: {//请求头
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        method: "POST",//get为默认方法/POST
-        success: function (res) {
-          console.log('image urls');
-          console.log(res.data);//res.data相当于ajax里面的data,为后台返回的数据
-
-          app.globalData.cnt = 0;
-          for (let i = 0; i < res.data.length; i++) {
-            console.log(res.data[i].imgUrl);
-
-            wx.downloadFile({
-              url: res.data[i].imgUrl, //仅为示例，并非真实的资源
-              type: 'image',
-              success: function (res) {
-                that.makeImageUrls(app.globalData.cnt, res.tempFilePath);
-                
-                app.globalData.cnt++;
-              }
-            });
-          }
-          that.setData({//如果在sucess直接写this就变成了wx.request()的this了.必须为getdata函数的this,不然无法重置调用函数
-            swiperImages: res.data
-          })
-          console.log("swiper 111");
-          console.log(that.data.swiperImages)
-        },
-        fail: function (err) { },//请求失败
-        complete: function () { 
-          
-        }//请求完成后执行的函数
-      })
-      console.log("swiper 3333");
-      console.log(that.data.swiperImages)
-    },
-
+ 
 })

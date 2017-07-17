@@ -5,7 +5,7 @@
       订单号: 176498882371
     </view>
     <view class="right" style="color:#e54142">
-      持付款
+      代付款
     </view>
   </view>
   <view class="commodity-item">
