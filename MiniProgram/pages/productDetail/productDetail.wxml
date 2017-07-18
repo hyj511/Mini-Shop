@@ -1,5 +1,7 @@
 <!--pages/productDetail/productDetail.wxml-->
 <import src="../templates/wechatUser.wxml" />
+<import src="../../lib/wxParse/wxParse.wxml"/>
+
 <view class="productDetail">
   <view class="section swiper-area">
     <swiper indicator-color="Rgba(100,100,100,0.5)" indicator-active-color="#fff" class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
@@ -56,15 +58,17 @@
       </block>
     </view>
   </view>
+
+  <!-- 详细内容 -->
   <view class="detail-area">
     <view class="title">
       <view class="content">商品详情</view>
     </view>
-    <view class="thumb">
-      <image src="../../images/commodity-thumb.png"></image>
-    </view>
+    <!-- html显示 -->
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
   </view>
 </view>
+
 <view class="button-area">
   <view class="sub-button">
     <button class="button appbutton1" bindtap="goBuyNow">
@@ -77,6 +81,7 @@
     </button>
   </view>
 </view>
+
 <!--Prepare modals-->
 <modal title="七天包退, 十四天包换" class="modal" hidden="{{modalRetreatHidden}}" no-cancel bindconfirm="modalRetreatChange" bindcancel="modalRetreatChange">
   <view> 本次团购落地活动在宣传上延续多渠开, 在願客来源上, 从小区... </view>

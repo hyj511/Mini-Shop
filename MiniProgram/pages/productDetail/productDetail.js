@@ -1,8 +1,13 @@
 // pages/productDetail/productDetail.js
 var util = require('../../utils/util.js');
-var app = getApp();
-Page({
+var config = require('../../config/config.js');
 
+//在使用的View中引入WxParse模块
+var WxParse = require('../../lib/wxParse/wxParse.js');
+
+var app = getApp();
+
+Page({
   /**
    * 页面的初始数据
    */
@@ -29,7 +34,9 @@ Page({
     // loading提示语
     loadingMessage: '',
     productDetails: [],
-    
+
+    // 图片base url
+    baseUrl: config.baseUrl
   },
   /*
     Called when user click question mark in 七天包退, 十四天包换 to show modal
@@ -214,7 +221,17 @@ Page({
 
           that.setData({//如果在sucess直接写this就变成了wx.request()的this了.必须为getdata函数的this,不然无法重置调用函数
             swiperImages: res.data.result.images
-          })
+          });
+
+          /**
+          * WxParse.wxParse(bindName , type, data, target,imagePadding)
+          * 1.bindName绑定的数据名(必填)
+          * 2.type可以为html或者md(必填)
+          * 3.data为传入的具体数据(必填)
+          * 4.target为Page对象,一般为this(必填)
+          * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
+          */
+          WxParse.wxParse('article', 'html', res.data.result.rtf_content, that, 5);
           
           console.log('productdetail->swiperimages')
           console.log(that.data.swiperImages)

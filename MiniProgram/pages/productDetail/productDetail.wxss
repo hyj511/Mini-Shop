@@ -1,5 +1,9 @@
 /* pages/productDetail/productDetail.wxss */
 
+.productDetail {
+  padding-bottom: 60px;
+}
+
 swiper.swiper {
   height: 300px;
 }
